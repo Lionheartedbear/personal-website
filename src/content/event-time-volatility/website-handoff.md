@@ -57,7 +57,7 @@ Use a premium light editorial appearance: warm white, ivory or beige, restrained
 
 Avoid Bloomberg-terminal styling, neon trading aesthetics and generic Bootstrap student-portfolio cards. Do not redesign the approved figures to suit a theme. No website is implemented in this package.
 
-Footer / secondary CTA: **[View code and methodology on GitHub →](https://github.com/Lionheartedbear/event-time-fx-volatility)**.
+Footer / secondary CTA: **[View code and methodology on GitHub →](https://github.com/wangdong-jia/event-time-volatility)**.
 
 ## Rebuild and provenance
 

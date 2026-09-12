@@ -117,4 +117,4 @@ A fixed multiplier **0.179224** is applied once after each square root, identica
 
 The filters are causal conditional on their fixed parameters; the scale selection and case study are retrospective. There is no trading strategy, alpha claim or forecasting-superiority claim. The [technical methodology](methodology-summary.md) details normalization, warm-up and units.
 
-[View implementation on GitHub →](https://github.com/Lionheartedbear/event-time-fx-volatility)
+[View implementation on GitHub →](https://github.com/wangdong-jia/event-time-volatility)
