@@ -1,0 +1,24 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  number?: string;
+  caption?: string;
+  id?: string;
+  eager?: boolean;
+  compact?: boolean;
+}
+const { src, alt, width, height, number, caption, id, eager = false, compact = false } = Astro.props;
+---
+
+<figure id={id} class:list={['research-figure', { 'research-figure--compact': compact }]}>
+  <div class="figure-image">
+    <img src={src} alt={alt} width={width} height={height} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+  </div>
+  <figcaption>
+    {number && <span class="figure-number">Fig. {number}</span>}
+    <span class="figure-caption-copy">{caption ?? alt}</span>
+  </figcaption>
+</figure>

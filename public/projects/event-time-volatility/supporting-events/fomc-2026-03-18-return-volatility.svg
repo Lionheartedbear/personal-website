@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="720pt" height="374.4pt" viewBox="0 0 720 374.4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>Return Volatility in Event Time — Zoomed In</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>Return Volatility in Event Time — Zoomed In</dc:title>
+    <dc:description>{"accepted_crossings": 2758, "alignment": {"broad": {"figures": ["figure_03_event_time_price.svg", "figure_04_event_time_return_volatility.svg", "figure_05_event_time_jump_volatility.svg"], "first": 0, "last": 2757, "release_event_index": 440, "rows": 2758, "source_event_indices_sha256": "cc1022ff700aac891acf2cd4cfa36fd09f689c8bd4aad3c60ee7473e8a80d2c7"}, "zoom": {"figures": ["figure_03b_event_time_price_zoom.svg", "figure_04b_event_time_return_volatility_zoom.svg", "figure_05b_event_time_jump_volatility_zoom.svg"], "first": 380, "last": 500, "release_event_index": 440, "rows": 121, "source_event_indices_sha256": "08fa5b864b97afb41f6d5e66fcbf420e680f6189b94cd1cd68e8506e14f52310"}}, "boundaries": "inclusive", "bounds": {"analysis_start": "2026-03-18T16:30:00+00:00", "day_end": "2026-03-18T22:00:00+00:00", "day_start": "2026-03-17T22:00:00+00:00", "end": "2026-03-18T18:45:00+00:00", "release": "2026-03-18T18:00:00+00:00", "start": "2026-03-18T17:30:00+00:00", "zoom_end": "2026-03-18T18:10:00+00:00", "zoom_start": "2026-03-18T17:55:00+00:00"}, "cumulative_audit": {"checks": {"constant_denominator": true, "crossing_rows_match": true, "ends_at_one": true, "exactly_one_seed": true, "final_numerator_matches": true, "hourly_total_matches": true, "monotone": true, "starts_at_zero": true, "timestamp_counts_match": true, "timestamps_sorted": true, "unique_accepted_quote_indices": true, "unique_event_indices": true}, "crossings_at_inclusive_end": 0, "final_numerator": 20564, "hourly_boundaries": "[start, end); crossings exactly at the final inclusive endpoint reported separately", "hourly_utc_counts": [{"crossings": 240, "end": "2026-03-17T23:00:00+00:00", "start": "2026-03-17T22:00:00+00:00"}, {"crossings": 279, "end": "2026-03-18T00:00:00+00:00", "start": "2026-03-17T23:00:00+00:00"}, {"crossings": 485, "end": "2026-03-18T01:00:00+00:00", "start": "2026-03-18T00:00:00+00:00"}, {"crossings": 324, "end": "2026-03-18T02:00:00+00:00", "start": "2026-03-18T01:00:00+00:00"}, {"crossings": 216, "end": "2026-03-18T03:00:00+00:00", "start": "2026-03-18T02:00:00+00:00"}, {"crossings": 122, "end": "2026-03-18T04:00:00+00:00", "start": "2026-03-18T03:00:00+00:00"}, {"crossings": 171, "end": "2026-03-18T05:00:00+00:00", "start": "2026-03-18T04:00:00+00:00"}, {"crossings": 206, "end": "2026-03-18T06:00:00+00:00", "start": "2026-03-18T05:00:00+00:00"}, {"crossings": 257, "end": "2026-03-18T07:00:00+00:00", "start": "2026-03-18T06:00:00+00:00"}, {"crossings": 507, "end": "2026-03-18T08:00:00+00:00", "start": "2026-03-18T07:00:00+00:00"}, {"crossings": 675, "end": "2026-03-18T09:00:00+00:00", "start": "2026-03-18T08:00:00+00:00"}, {"crossings": 491, "end": "2026-03-18T10:00:00+00:00", "start": "2026-03-18T09:00:00+00:00"}, {"crossings": 418, "end": "2026-03-18T11:00:00+00:00", "start": "2026-03-18T10:00:00+00:00"}, {"crossings": 1269, "end": "2026-03-18T12:00:00+00:00", "start": "2026-03-18T11:00:00+00:00"}, {"crossings": 2437, "end": "2026-03-18T13:00:00+00:00", "start": "2026-03-18T12:00:00+00:00"}, {"crossings": 2229, "end": "2026-03-18T14:00:00+00:00", "start": "2026-03-18T13:00:00+00:00"}, {"crossings": 1840, "end": "2026-03-18T15:00:00+00:00", "start": "2026-03-18T14:00:00+00:00"}, {"crossings": 1460, "end": "2026-03-18T16:00:00+00:00", "start": "2026-03-18T15:00:00+00:00"}, {"crossings": 954, "end": "2026-03-18T17:00:00+00:00", "start": "2026-03-18T16:00:00+00:00"}, {"crossings": 803, "end": "2026-03-18T18:00:00+00:00", "start": "2026-03-18T17:00:00+00:00"}, {"crossings": 2934, "end": "2026-03-18T19:00:00+00:00", "start": "2026-03-18T18:00:00+00:00"}, {"crossings": 1261, "end": "2026-03-18T20:00:00+00:00", "start": "2026-03-18T19:00:00+00:00"}, {"crossings": 609, "end": "2026-03-18T21:00:00+00:00", "start": "2026-03-18T20:00:00+00:00"}, {"crossings": 377, "end": "2026-03-18T22:00:00+00:00", "start": "2026-03-18T21:00:00+00:00"}], "passed": true, "tied_timestamp_extra_crossings": 0, "total_crossings": 20564}, "data_kind": "local_file", "data_provider": "HistData", "kernels": {"jump_kernel": {"random_walk_gain": 23.999999999999996, "sha256": "5d301915e7b09e480a620a9c7b66709da48e7b64e88fcf8b265d2de0d19f8b5d", "sum": -4.163336342344337e-17, "support": 12}, "jump_variance_weights": {"random_walk_gain": null, "sha256": "a7a92f3cf4f130e7b8fe53b5f1d2b4998e3c010a0c61252c2f280f076cc57197", "sum": 0.9999999999999999, "support": 12}, "return_kernel": {"random_walk_gain": 24.0, "sha256": "813061ad9afbc1336c9fa383851a19f51fa661355f87918b9da9ebf8c799c4c6", "sum": 8.153200337090993e-17, "support": 20}, "return_variance_weights": {"random_walk_gain": null, "sha256": "def33333e3e329e74f9c0fb22196017801f24ee0cab8ef8573e2f099340e147b", "sum": 1.0000000000000002, "support": 60}}, "key": "fomc/2026-03-18_statement", "max_gap": "5min", "numerical_inputs": "Unchanged approved saved observations and coefficients", "physical_axis_timezone": "UTC", "project": "Volatility on an Event Clock", "public_colors": {"deep_green": "#285447"}, "quote_count": 9895, "release": "2026-03-18T18:00:00+00:00", "release_event_index": 440, "release_event_timestamp": "2026-03-18T18:00:01.352000+00:00", "release_label": "FOMC policy statement", "sampling": {"event_threshold_pips": 0.2, "event_trigger": {"mode": "adjacent_average"}, "instrument": "EURUSD", "pip_size": 0.0001}, "settings": {"events": [{"key": "nfp/2026-02-11", "release": "2026-02-11T13:30:00Z"}, {"key": "nfp/2026-03-06", "release": "2026-03-06T13:30:00Z"}, {"key": "fomc/2026-02-18_minutes", "release": "2026-02-18T19:00:00Z"}, {"key": "fomc/2026-03-18_statement", "release": "2026-03-18T18:00:00Z"}], "jump_volatility": {"first_support": 12, "kaiser_beta": 8.0, "second_support": 12, "volatility_scale_multiplier": 0.179224}, "normalization_delta_n": 24, "return_volatility": {"first_support": 20, "kaiser_beta": 8.0, "second_support": 60, "volatility_scale_multiplier": 0.179224}}, "units": {"figure_volatility": "Scaled bp = 10000 * saved scaled volatility; not annualized", "variance": "Unscaled squared log-return units", "volatility": "Fixed multiplier times sqrt(variance), in scaled log-return units", "volatility_unscaled": "sqrt(variance), in log-return units"}, "volatility": {"jump": {"missing_observations": 0, "scaled_mean_bp": 0.22710103677802979, "scaled_peak_bp": 0.9264445787262563, "unscaled_mean_bp": 1.2671351871291223, "valid_observations": 2758}, "return": {"missing_observations": 0, "scaled_mean_bp": 0.31852247504914316, "scaled_peak_bp": 0.6794947875224258, "unscaled_mean_bp": 1.7772311467724362, "valid_observations": 2758}}}</dc:description>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Volatility on an Event Clock: actual saved observations and public filter coefficients</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 374.4 
+L 720 374.4 
+L 720 0 
+L 0 0 
+z
+" style="fill: #faf8f3"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 75.6 284.544 
+L 698.4 284.544 
+L 698.4 112.32 
+L 75.6 112.32 
+z
+" style="fill: #faf8f3"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #667784" x="75.6" y="300.141656" transform="rotate(-0 75.6 300.141656)">380</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #667784" x="179.4" y="300.141656" transform="rotate(-0 179.4 300.141656)">400</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #667784" x="283.2" y="300.141656" transform="rotate(-0 283.2 300.141656)">420</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4"/>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #667784" x="387" y="300.141656" transform="rotate(-0 387 300.141656)">440</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5"/>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #667784" x="490.8" y="300.141656" transform="rotate(-0 490.8 300.141656)">460</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6"/>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #667784" x="594.6" y="300.141656" transform="rotate(-0 594.6 300.141656)">480</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_7"/>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #667784" x="698.4" y="300.141656" transform="rotate(-0 698.4 300.141656)">500</text>
+     </g>
+    </g>
+    <g id="text_8">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #667784" x="387" y="322.142438" transform="rotate(-0 387 322.142438)">Event index</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_8">
+      <path d="M 75.6 284.544 
+L 698.4 284.544 
+" clip-path="url(#pc5bbb9e812)" style="fill: none; stroke: #667784; stroke-opacity: 0.12; stroke-width: 0.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_9"/>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #667784" x="67.6" y="288.342828" transform="rotate(-0 67.6 288.342828)">0.00</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_10">
+      <path d="M 75.6 229.918313 
+L 698.4 229.918313 
+" clip-path="url(#pc5bbb9e812)" style="fill: none; stroke: #667784; stroke-opacity: 0.12; stroke-width: 0.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_11"/>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #667784" x="67.6" y="233.717141" transform="rotate(-0 67.6 233.717141)">0.15</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_12">
+      <path d="M 75.6 175.292626 
+L 698.4 175.292626 
+" clip-path="url(#pc5bbb9e812)" style="fill: none; stroke: #667784; stroke-opacity: 0.12; stroke-width: 0.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_13"/>
+     <g id="text_11">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #667784" x="67.6" y="179.091455" transform="rotate(-0 67.6 179.091455)">0.30</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_14">
+      <path d="M 75.6 120.66694 
+L 698.4 120.66694 
+" clip-path="url(#pc5bbb9e812)" style="fill: none; stroke: #667784; stroke-opacity: 0.12; stroke-width: 0.5; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_15"/>
+     <g id="text_12">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #667784" x="67.6" y="124.465768" transform="rotate(-0 67.6 124.465768)">0.45</text>
+     </g>
+    </g>
+    <g id="text_13">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #667784" x="30.932031" y="198.432" transform="rotate(-90 30.932031 198.432)">Return volatility (scaled bp)</text>
+    </g>
+   </g>
+   <g id="line2d_16">
+    <path d="M 75.6 194.73733 
+L 80.79 195.021256 
+L 85.98 195.504033 
+L 91.17 196.158892 
+L 96.36 196.952568 
+L 101.55 197.846042 
+L 106.74 198.795699 
+L 111.93 199.754455 
+L 117.12 200.67269 
+L 122.31 201.499439 
+L 127.5 202.184275 
+L 132.69 202.679797 
+L 137.88 202.944332 
+L 143.07 202.944772 
+L 148.26 202.659235 
+L 153.45 202.078812 
+L 158.64 201.208072 
+L 163.83 200.064687 
+L 169.02 198.678224 
+L 174.21 197.088009 
+L 179.4 195.340479 
+L 184.59 193.486784 
+L 189.78 191.580868 
+L 194.97 189.677743 
+L 200.16 187.831548 
+L 205.35 186.09341 
+L 210.54 184.509614 
+L 215.73 183.120691 
+L 220.92 181.961509 
+L 226.11 181.061701 
+L 231.3 180.445834 
+L 236.49 180.133482 
+L 241.68 180.139516 
+L 246.87 180.474264 
+L 252.06 181.143235 
+L 257.25 182.146625 
+L 262.44 183.478995 
+L 267.63 185.129337 
+L 272.82 187.081682 
+L 278.01 189.315987 
+L 283.2 191.808959 
+L 288.39 194.534764 
+L 293.58 197.465589 
+L 298.77 200.571857 
+L 303.96 203.822279 
+L 309.15 207.184223 
+L 314.34 210.624341 
+L 319.53 214.10897 
+L 324.72 217.604293 
+L 329.91 221.076571 
+L 335.1 224.492622 
+L 340.29 227.820299 
+L 345.48 231.028144 
+L 350.67 234.084021 
+L 355.86 236.95413 
+L 361.05 239.603951 
+L 366.24 242.000633 
+L 371.43 244.114939 
+L 376.62 245.922005 
+L 381.81 247.402029 
+L 387 248.541558 
+L 392.19 249.334892 
+L 397.38 249.784678 
+L 402.57 249.901673 
+L 407.76 249.703303 
+L 412.95 249.211299 
+L 418.14 248.448369 
+L 423.33 247.433602 
+L 428.52 246.177087 
+L 433.71 244.675942 
+L 438.9 242.915157 
+L 444.09 240.873642 
+L 449.28 238.532308 
+L 454.47 235.879467 
+L 459.66 232.912569 
+L 464.85 229.637293 
+L 470.04 226.065809 
+L 475.23 222.214968 
+L 480.42 218.105062 
+L 485.61 213.759762 
+L 490.8 209.206738 
+L 495.99 204.47792 
+L 501.18 199.609142 
+L 506.37 194.639503 
+L 511.56 189.610573 
+L 516.75 184.565551 
+L 521.94 179.548684 
+L 527.13 174.605111 
+L 532.32 169.780877 
+L 537.51 165.12251 
+L 542.7 160.675797 
+L 547.89 156.484367 
+L 553.08 152.588927 
+L 558.27 149.026855 
+L 563.46 145.831433 
+L 568.65 143.030658 
+L 573.84 140.646089 
+L 579.03 138.692369 
+L 584.22 137.17746 
+L 589.41 136.103033 
+L 594.6 135.464432 
+L 599.79 135.250279 
+L 604.98 135.442269 
+L 610.17 136.015249 
+L 615.36 136.937106 
+L 620.55 138.168431 
+L 625.74 139.662654 
+L 630.93 141.367177 
+L 636.12 143.225156 
+L 641.31 145.177301 
+L 646.5 147.163508 
+L 651.69 149.124382 
+L 656.88 151.002528 
+L 662.07 152.743535 
+L 667.26 154.296828 
+L 672.45 155.61688 
+L 677.64 156.664981 
+L 682.83 157.41075 
+L 688.02 157.832255 
+L 693.21 157.914795 
+L 698.4 157.649442 
+" clip-path="url(#pc5bbb9e812)" style="fill: none; stroke: #285447; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="release_reference">
+    <path d="M 387 284.544 
+L 387 112.32 
+" clip-path="url(#pc5bbb9e812)" style="fill: none; stroke-dasharray: 0.8,1.32; stroke-dashoffset: 0; stroke: #667784; stroke-opacity: 0.85; stroke-width: 0.8"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 75.6 284.544 
+L 698.4 284.544 
+" style="fill: none; stroke: #667784; stroke-width: 0.45; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #667784" x="685.944" y="125.667632" transform="rotate(-0 685.944 125.667632)">Dotted: FOMC policy statement</text>
+   </g>
+  </g>
+  <g id="text_15">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #285447" x="54" y="18.3456" transform="rotate(-0 54 18.3456)">04B / EVENT-TIME FX</text>
+  </g>
+  <g id="text_16">
+   <text style="font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #285447" x="54" y="46.0512" transform="rotate(-0 54 46.0512)">Return Volatility in Event Time — Zoomed In</text>
+  </g>
+  <g id="text_17">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #667784" x="54" y="67.0176" transform="rotate(-0 54 67.0176)">EUR/USD · Empirical data · 18 Mar 2026 · Event indices 380–500</text>
+  </g>
+  <g id="text_18">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #375b61" x="54" y="340.3296" transform="rotate(-0 54 340.3296)">Actual supports: 20 / 60 coefficients · Fixed post-root multiplier 0.179224</text>
+  </g>
+  <g id="text_19">
+   <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #667784" x="54" y="357.552" transform="rotate(-0 54 357.552)">Actual consecutive estimates; no display smoothing. Public illustrative normalization; no unbiasedness claim.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pc5bbb9e812">
+   <rect x="75.6" y="112.32" width="622.8" height="172.224"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,0 +1,17 @@
+---
+interface Props {
+  label: string;
+  href: string | null;
+  available?: boolean;
+}
+const { label, href, available = true } = Astro.props;
+const external = href?.startsWith('https://');
+---
+
+{href && available ? (
+  <a class="text-link" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} aria-label={external ? `${label} (opens in a new tab)` : undefined}>{label}<span aria-hidden="true"> {external ? '↗' : '→'}</span></a>
+) : href ? (
+  <span class="placeholder-link" aria-label={`${label} (forthcoming)`} title={`${label} forthcoming`}>{label}</span>
+) : (
+  <span class="placeholder-link">{label}<span class="placeholder-note"> / pending</span></span>
+)}

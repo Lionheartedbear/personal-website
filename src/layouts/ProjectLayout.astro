@@ -1,0 +1,29 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import type { Project } from '../data/projects';
+interface Props { project: Project; intro: string; }
+const { project, intro } = Astro.props;
+---
+
+<BaseLayout title={`${project.title} — Wangdong Jia`} description={project.description}>
+  <article class="project-page container">
+    <div class="project-topline">
+      <a class="back-link" href="/"><span aria-hidden="true">←</span> Back to Main Page</a>
+      {project.githubUrl && <a class="secondary-link" href={project.githubUrl}>View GitHub <span aria-hidden="true">↗</span></a>}
+    </div>
+    <header class="project-header">
+      <SectionLabel number={project.number} text="Research project" />
+      <h1>{project.title}</h1>
+      <p class="project-deck">{project.subtitle}</p>
+      <p class="project-intro">{intro}</p>
+      <ul class="project-tags" aria-label="Project topics">{project.tags.filter((tag) => tag !== 'Python').map((tag) => <li>{tag}</li>)}</ul>
+    </header>
+    <slot name="disclaimer" />
+    <slot name="hero" />
+    <div class="project-body"><slot /></div>
+    <footer class="project-source" aria-label="Project links">
+      <a class="back-link" href="/"><span aria-hidden="true">←</span> Back to Main Page</a>
+    </footer>
+  </article>
+</BaseLayout>

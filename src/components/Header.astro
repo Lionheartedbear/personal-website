@@ -1,0 +1,8 @@
+---
+const isHome = Astro.url.pathname === '/';
+---
+
+<header class="site-header container">
+  <span class="wordmark">Wangdong Jia<span class="wordmark-dot" aria-hidden="true">.</span></span>
+  <span class="header-note">{isHome ? 'Research & background' : 'Research project'}</span>
+</header>

@@ -1,0 +1,501 @@
+{
+  "package_title": "Volatility on an Event Clock",
+  "generated_at_utc": "2026-09-11T06:12:06Z",
+  "github_url": "https://github.com/Lionheartedbear/event-time-fx-volatility",
+  "source_v5_manifest": {
+    "path": "artifacts/experiments/selected_v5/manifest.json",
+    "sha256": "a0f5a29ad7ae1ced3f19f616d70e2806491f6e6fbb5a660f73ba05749356bce2"
+  },
+  "source_configuration": {
+    "path": "config/selected_experiments_v4.yaml",
+    "sha256": "8bd8bfc603f30c1e0bcb13d2743973346ec871c888f357099c14aeaf6380ce5d",
+    "resolved_configuration_sha256": "7e9f47d87a9edf9a109dac996abdd6415c90679e050cfc86058a70a306a86f9f"
+  },
+  "source_numerical_code": {
+    "recorded_research_source_sha256": "6d24a1aebc55082b510b34fde6407c8309ad35a597ddcd3d66e533082c6dcbbc",
+    "file_sha256": {
+      "src/eventfx/event_clock.py": "b1ec43ac314a2574e396991b18e47bf2937afbaaadf8dced9a76da8af8e78443",
+      "src/eventfx/data.py": "37884c0d54e2877b300656391d1ef95f33cf7a45ad90dba5a13bd74c6093f98a",
+      "src/eventfx/histdata.py": "97aa7967a6b9fe0364ac8b71a3f0648746e6ef6c7efde91e8fe2627a8748ea29",
+      "src/eventfx/kernels.py": "ecb8a02cb078e000b4a69057507e042bb9798eb4fabcb9da45a45512351cce5d",
+      "src/eventfx/returns.py": "c8f837377f42de508a899c3bc3595fc15e265f5a9f10fd850a123c7e250600c8",
+      "src/eventfx/volatility.py": "1488c987596e60924255affb7361693249dca50b5cafa441d6fa43d86ea9e9e5",
+      "src/eventfx/volatility_v2.py": "e5e71680739d02308452798bc96a333190ec97e18aa71840dcb830988c31495c",
+      "src/eventfx/selected_v4.py": "d0c91d11ef80500f2437b05fd8d7171ef1d9a195a18dcacdbb3aa4ee4d09f49f",
+      "src/eventfx/selected_v5.py": "963fc929b336f02b93dd5e69b5d18d7ff38ef6b077f270b3cb895c0f5b08deb4",
+      "src/eventfx/selected_v5_plotting.py": "1bbd1c3146f551745dfb61aca3e36287b6c90d5ba02da5d52d549eee771f10fc",
+      "src/eventfx/pipeline.py": "b120947886186b131239d734558b3d96306b641b841b4b5a3e6a5f3fb8d8eb5c",
+      "src/eventfx/selected_v2_plotting.py": "61a0f9f9bbde406591793ddafd1ec3546e0b7f7ffc46943006a50dcdbce9f8f0",
+      "src/eventfx/public_export.py": "e9a4ac4ecb822d257ccb18840820860514a4edfe714549151658fed99381507f"
+    }
+  },
+  "methodology": {
+    "instrument": "EURUSD",
+    "pip_size": 0.0001,
+    "event_threshold_pips": 0.2,
+    "event_threshold_price_units": 2e-05,
+    "trigger": "adjacent_average",
+    "normalization_delta_n": 24,
+    "return_volatility": {
+      "first_support": 20,
+      "second_support": 60,
+      "kaiser_beta": 8.0,
+      "volatility_scale_multiplier": 0.179224
+    },
+    "jump_volatility": {
+      "first_support": 12,
+      "second_support": 12,
+      "kaiser_beta": 8.0,
+      "volatility_scale_multiplier": 0.179224
+    },
+    "return_kernel": "smooth two-lobe Kaiser-derived zero-sum kernel",
+    "jump_kernel": "alternating-sign symmetric Kaiser envelope",
+    "variance_kernels": "nonnegative Kaiser weights normalized to sum to one",
+    "scale_application": "once after square root",
+    "display_units": "10000 times scaled log-return volatility; scaled bp, not annualized"
+  },
+  "scale_origin": {
+    "start": "2026-08-19T17:30:00Z",
+    "end": "2026-08-19T18:45:00Z",
+    "target_mean_bp": 0.2,
+    "interpretation": "One retrospective illustrative public scale calibration, fixed for the entire run. Rounded to six decimals from target_mean_bp / unscaled_mean_bp. Not a theoretical convexity correction, unbiasedness result, or pip-to-bp identity."
+  },
+  "main_event": {
+    "key": "nfp/2026-02-11",
+    "slug": "nfp-2026-02-11",
+    "label": "NFP / Employment Situation",
+    "release_utc": "2026-02-11T13:30:00Z",
+    "role": "main-case",
+    "bounds_utc": {
+      "release": "2026-02-11T13:30:00+00:00",
+      "start": "2026-02-11T13:00:00+00:00",
+      "end": "2026-02-11T14:15:00+00:00",
+      "analysis_start": "2026-02-11T12:00:00+00:00",
+      "zoom_start": "2026-02-11T13:25:00+00:00",
+      "zoom_end": "2026-02-11T13:40:00+00:00",
+      "day_start": "2026-02-10T22:00:00+00:00",
+      "day_end": "2026-02-11T22:00:00+00:00"
+    },
+    "quote_count": 17598,
+    "accepted_crossings": 5359,
+    "release_event_index": 382,
+    "release_event_timestamp_utc": "2026-02-11T13:30:01.183000+00:00",
+    "range_pips": 71.29999999999859,
+    "max_asof_60s_move_pips": 63.10000000000038,
+    "numerical_provenance": {
+      "directory": "data/processed/experiments/selected_v4/nfp/2026-02-11",
+      "sha256": {
+        "event_volatility.parquet": "177ef6e302a12200c1f39040aa1803d6d0e6b54b8ddecc0fe5a3a12eba4401f1",
+        "broad_events.parquet": "0a690e5da7dc4e31fb6d450ab32f4c2df97b4aa4e50e770f9b125a25b767ec4b"
+      }
+    }
+  },
+  "supporting_events": [
+    {
+      "key": "nfp/2026-03-06",
+      "slug": "nfp-2026-03-06",
+      "label": "NFP / Employment Situation",
+      "release_utc": "2026-03-06T13:30:00Z",
+      "role": "supporting-events",
+      "bounds_utc": {
+        "release": "2026-03-06T13:30:00+00:00",
+        "start": "2026-03-06T13:00:00+00:00",
+        "end": "2026-03-06T14:15:00+00:00",
+        "analysis_start": "2026-03-06T12:00:00+00:00",
+        "zoom_start": "2026-03-06T13:25:00+00:00",
+        "zoom_end": "2026-03-06T13:40:00+00:00",
+        "day_start": "2026-03-05T22:00:00+00:00",
+        "day_end": "2026-03-06T22:00:00+00:00"
+      },
+      "quote_count": 18651,
+      "accepted_crossings": 5113,
+      "release_event_index": 710,
+      "release_event_timestamp_utc": "2026-03-06T13:30:00.126000+00:00",
+      "range_pips": 47.000000000001485,
+      "max_asof_60s_move_pips": 28.500000000000192,
+      "numerical_provenance": {
+        "directory": "data/processed/experiments/selected_v4/nfp/2026-03-06",
+        "sha256": {
+          "event_volatility.parquet": "ec16cfb40c96d823c929a6dff00f79c5f308f3fe52e81a3819cc2c987cad60f7",
+          "broad_events.parquet": "c0adfc369a9b72a0d55a62197499851f2714810a896a29072af333c122446b8e"
+        }
+      }
+    },
+    {
+      "key": "fomc/2026-02-18_minutes",
+      "slug": "fomc-2026-02-18",
+      "label": "FOMC minutes",
+      "release_utc": "2026-02-18T19:00:00Z",
+      "role": "supporting-events",
+      "bounds_utc": {
+        "release": "2026-02-18T19:00:00+00:00",
+        "start": "2026-02-18T18:30:00+00:00",
+        "end": "2026-02-18T19:45:00+00:00",
+        "analysis_start": "2026-02-18T17:30:00+00:00",
+        "zoom_start": "2026-02-18T18:55:00+00:00",
+        "zoom_end": "2026-02-18T19:10:00+00:00",
+        "day_start": "2026-02-17T22:00:00+00:00",
+        "day_end": "2026-02-18T22:00:00+00:00"
+      },
+      "quote_count": 5231,
+      "accepted_crossings": 988,
+      "release_event_index": 289,
+      "release_event_timestamp_utc": "2026-02-18T19:00:01.417000+00:00",
+      "range_pips": 11.499999999999844,
+      "max_asof_60s_move_pips": 6.850000000000467,
+      "numerical_provenance": {
+        "directory": "data/processed/experiments/selected_v4/fomc/2026-02-18_minutes",
+        "sha256": {
+          "event_volatility.parquet": "4732837d12cc306db2ea26c07d1115351a5b85b2f05067e243a5ad8c5ea0cfa3",
+          "broad_events.parquet": "6002517e72c6a4a8df2d080e8ffbeefb15e0b7d6e7e36ce1af0cbcba9c5de9c6"
+        }
+      }
+    },
+    {
+      "key": "fomc/2026-03-18_statement",
+      "slug": "fomc-2026-03-18",
+      "label": "FOMC policy statement",
+      "release_utc": "2026-03-18T18:00:00Z",
+      "role": "supporting-events",
+      "bounds_utc": {
+        "release": "2026-03-18T18:00:00+00:00",
+        "start": "2026-03-18T17:30:00+00:00",
+        "end": "2026-03-18T18:45:00+00:00",
+        "analysis_start": "2026-03-18T16:30:00+00:00",
+        "zoom_start": "2026-03-18T17:55:00+00:00",
+        "zoom_end": "2026-03-18T18:10:00+00:00",
+        "day_start": "2026-03-17T22:00:00+00:00",
+        "day_end": "2026-03-18T22:00:00+00:00"
+      },
+      "quote_count": 9895,
+      "accepted_crossings": 2758,
+      "release_event_index": 440,
+      "release_event_timestamp_utc": "2026-03-18T18:00:01.352000+00:00",
+      "range_pips": 34.65000000000051,
+      "max_asof_60s_move_pips": 10.799999999999699,
+      "numerical_provenance": {
+        "directory": "data/processed/experiments/selected_v4/fomc/2026-03-18_statement",
+        "sha256": {
+          "event_volatility.parquet": "74d8ef15eb1d6084cd8d88ba9973c888e8f3cb444eb8716522235e71e9178a53",
+          "broad_events.parquet": "35818a3bae36c22148f72bfa3e3f17ef7c31a3e5bca6cd8493c1ff9f1e889257"
+        }
+      }
+    }
+  ],
+  "assets": [
+    {
+      "source_path": "artifacts/experiments/selected_v5/nfp/2026-02-11/figure_01_physical_price_threshold.svg",
+      "destination_path": "portfolio/assets/main-case/figure_01_physical_price_threshold.svg",
+      "role": "main-case",
+      "event_key": "nfp/2026-02-11",
+      "figure_number": "01",
+      "title": "Physical-Time Price and Threshold Crossings",
+      "sha256": "08531e902f228ce23fd961540b28a17b9bf1e8779edeaebf5084d5d9b3375181",
+      "source_sha256": "8fed6b77aa88664a631fcb06f52f2cb02aeedc19fb35efa7b7752456b6645522",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/nfp/2026-02-11/figure_01b_physical_price_threshold_zoom.svg",
+      "destination_path": "portfolio/assets/main-case/figure_01b_physical_price_threshold_zoom.svg",
+      "role": "main-case",
+      "event_key": "nfp/2026-02-11",
+      "figure_number": "01B",
+      "title": "Physical-Time Price and Threshold Crossings — Zoomed In",
+      "sha256": "5dba8ab0a293b019196fc3a01e8cc27c68a2227268f282f1439d17f0b412b189",
+      "source_sha256": "4b53c441dbfa30f833072475cd6fc06356bc579b75b33907a31192bb12c90e3f",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/nfp/2026-02-11/figure_02_normalized_cumulative_crossings.svg",
+      "destination_path": "portfolio/assets/main-case/figure_02_normalized_cumulative_crossings.svg",
+      "role": "main-case",
+      "event_key": "nfp/2026-02-11",
+      "figure_number": "02",
+      "title": "Normalized Cumulative Threshold Crossings",
+      "sha256": "5a973d144ca8ba4d45e08f82006efb8bc9ffedee94775ddebee623656ca667dd",
+      "source_sha256": "34f29ca1dc013c30ea650f261f1b9acef718f8ce9fd7f3b5bca621136e61805f",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/nfp/2026-02-11/figure_03_event_time_price.svg",
+      "destination_path": "portfolio/assets/main-case/figure_03_event_time_price.svg",
+      "role": "main-case",
+      "event_key": "nfp/2026-02-11",
+      "figure_number": "03",
+      "title": "Price History in Event Time",
+      "sha256": "0219aba3d34bd96f0dc4e9f2606319aea819044afea1d86044e246d669fa6eef",
+      "source_sha256": "6f91acb4da7db3422f1b5c64cd71671330d395f9515b76424545db7d2c96b2cb",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/nfp/2026-02-11/figure_03b_event_time_price_zoom.svg",
+      "destination_path": "portfolio/assets/main-case/figure_03b_event_time_price_zoom.svg",
+      "role": "main-case",
+      "event_key": "nfp/2026-02-11",
+      "figure_number": "03B",
+      "title": "Price History in Event Time — Zoomed In",
+      "sha256": "ef038278d92e5669d739b049cdfcb5b5d7ed1640cca4c6f537a0e0c01790908b",
+      "source_sha256": "d57c2d8cd34779c9fb70471889c1ecd972dfb5070e0334303759457f52a4adae",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/nfp/2026-02-11/figure_04_event_time_return_volatility.svg",
+      "destination_path": "portfolio/assets/main-case/figure_04_event_time_return_volatility.svg",
+      "role": "main-case",
+      "event_key": "nfp/2026-02-11",
+      "figure_number": "04",
+      "title": "Return Volatility in Event Time",
+      "sha256": "eacdc22984debdf67c3cd98ed0ac90123b5067e5e015e5229338dac9ec6ee826",
+      "source_sha256": "35fa3ee5e7bd08dbd62a96a9ebdf2d2d95e79b1c88b5721d20b9ce2f03ad45f1",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/nfp/2026-02-11/figure_04b_event_time_return_volatility_zoom.svg",
+      "destination_path": "portfolio/assets/main-case/figure_04b_event_time_return_volatility_zoom.svg",
+      "role": "main-case",
+      "event_key": "nfp/2026-02-11",
+      "figure_number": "04B",
+      "title": "Return Volatility in Event Time — Zoomed In",
+      "sha256": "cdf58e4b8bbe1b284c5efb917f6614265baf3274c550447918345688ef81847f",
+      "source_sha256": "6e6d006d180b2d6fb475e479954d8cc483eb8cb0df6c6e455a46fa479df050a8",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/nfp/2026-02-11/figure_05_event_time_jump_volatility.svg",
+      "destination_path": "portfolio/assets/main-case/figure_05_event_time_jump_volatility.svg",
+      "role": "main-case",
+      "event_key": "nfp/2026-02-11",
+      "figure_number": "05",
+      "title": "Jump Volatility in Event Time",
+      "sha256": "a5e247b948c972f1cf5de4941190720534d6b1371c86c77b35798e3b91fd6bb8",
+      "source_sha256": "7fc8b736dcc73ac4baa9d5ea6fb57f35dcf46a3f83311daafc12c8b9f2e7331a",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/nfp/2026-02-11/figure_05b_event_time_jump_volatility_zoom.svg",
+      "destination_path": "portfolio/assets/main-case/figure_05b_event_time_jump_volatility_zoom.svg",
+      "role": "main-case",
+      "event_key": "nfp/2026-02-11",
+      "figure_number": "05B",
+      "title": "Jump Volatility in Event Time — Zoomed In",
+      "sha256": "464221145080a35319baa10259f82452607c940942d715648c820d3097c5fdfc",
+      "source_sha256": "be0f5ad992ab55c3e0125549ce4433727bcb700b6536759a9e447635659af146",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/figure_06_return_volatility_weights.svg",
+      "destination_path": "portfolio/assets/global/figure_06_return_volatility_weights.svg",
+      "role": "global",
+      "event_key": null,
+      "figure_number": "06",
+      "title": "Return-volatility weight profiles",
+      "sha256": "546d4e0896f141dc4f13865c4b2bf1de6bf6f55d8fe7717b15cacc0d73e36c54",
+      "source_sha256": "2c47be0236302383bdb7894ce66147c747a00f75938d4b33a3d5498928632877",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/figure_07_jump_volatility_weights.svg",
+      "destination_path": "portfolio/assets/global/figure_07_jump_volatility_weights.svg",
+      "role": "global",
+      "event_key": null,
+      "figure_number": "07",
+      "title": "Jump-volatility weight profiles",
+      "sha256": "61673172f306f0c7cc634794747fe70b8efe4da21c0be9580ab26288e8ece3d5",
+      "source_sha256": "1499a5f9cf240d73963b3112aef3bd4f43a5bf94d0781b08622ff23743a48a38",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/nfp/2026-03-06/figure_01b_physical_price_threshold_zoom.svg",
+      "destination_path": "portfolio/assets/supporting-events/nfp-2026-03-06-physical.svg",
+      "role": "supporting-events",
+      "event_key": "nfp/2026-03-06",
+      "figure_number": "01B",
+      "title": "Physical-Time Price and Threshold Crossings — Zoomed In",
+      "sha256": "1d8cdef6c49c8953e548bffb18049df5d05be11033eb9e89abbec6501d3b2262",
+      "source_sha256": "985ea8f58b419dd0641ab1ea33079195ed1c02fa60ef4c5c633dc9fa7bd70616",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/nfp/2026-03-06/figure_04b_event_time_return_volatility_zoom.svg",
+      "destination_path": "portfolio/assets/supporting-events/nfp-2026-03-06-return-volatility.svg",
+      "role": "supporting-events",
+      "event_key": "nfp/2026-03-06",
+      "figure_number": "04B",
+      "title": "Return Volatility in Event Time — Zoomed In",
+      "sha256": "efe3a817a96ba55274cd82c71c90a8b780b322007e0eda8e78880a384a740bc1",
+      "source_sha256": "b6a3d9b3c1ab3fbd0203b29cbea529ad359f841a0b29aca3456751e4e6cd5b65",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/fomc/2026-02-18_minutes/figure_01b_physical_price_threshold_zoom.svg",
+      "destination_path": "portfolio/assets/supporting-events/fomc-2026-02-18-physical.svg",
+      "role": "supporting-events",
+      "event_key": "fomc/2026-02-18_minutes",
+      "figure_number": "01B",
+      "title": "Physical-Time Price and Threshold Crossings — Zoomed In",
+      "sha256": "5fff18eec2e60d6ce8dc613a2b791b09102919ca9c02c94328ca8da46a079fe4",
+      "source_sha256": "1516debb4fc88acc11f106a8945c6a76f106bcbc754f232a88afb4ae0d9f6363",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/fomc/2026-02-18_minutes/figure_04b_event_time_return_volatility_zoom.svg",
+      "destination_path": "portfolio/assets/supporting-events/fomc-2026-02-18-return-volatility.svg",
+      "role": "supporting-events",
+      "event_key": "fomc/2026-02-18_minutes",
+      "figure_number": "04B",
+      "title": "Return Volatility in Event Time — Zoomed In",
+      "sha256": "4633ee12ee4667334f9ae0f987f95f8f18b75ee571f5fb0ab0dadfbe3da511b1",
+      "source_sha256": "f207fbe9376b42574a9d32f46f1d7df64bf0e32cf5479b2f5f48f60654a50b8b",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/fomc/2026-03-18_statement/figure_01b_physical_price_threshold_zoom.svg",
+      "destination_path": "portfolio/assets/supporting-events/fomc-2026-03-18-physical.svg",
+      "role": "supporting-events",
+      "event_key": "fomc/2026-03-18_statement",
+      "figure_number": "01B",
+      "title": "Physical-Time Price and Threshold Crossings — Zoomed In",
+      "sha256": "d471e48026313e671f9b96c6f052b99b50c08952b78722235745fa9ce927c41b",
+      "source_sha256": "7758a686bf80e905198545bd8862d74549e1f4fd39a25dff7e09fbf384bc063f",
+      "export_type": "versionless_public_render"
+    },
+    {
+      "source_path": "artifacts/experiments/selected_v5/fomc/2026-03-18_statement/figure_04b_event_time_return_volatility_zoom.svg",
+      "destination_path": "portfolio/assets/supporting-events/fomc-2026-03-18-return-volatility.svg",
+      "role": "supporting-events",
+      "event_key": "fomc/2026-03-18_statement",
+      "figure_number": "04B",
+      "title": "Return Volatility in Event Time — Zoomed In",
+      "sha256": "77adad222561f7900204c5746c12c09f9bf0f4ad001d269849d5b8b74ba0b3e3",
+      "source_sha256": "25b76bbd9ff66f08f61d0c7e8b91003ad9462f3484179497e91c6aa45b62f33a",
+      "export_type": "versionless_public_render"
+    }
+  ],
+  "asset_count": 17,
+  "public_export_validation": {
+    "renderer_sha256": {
+      "src/eventfx/public_export.py": "e9a4ac4ecb822d257ccb18840820860514a4edfe714549151658fed99381507f",
+      "src/eventfx/selected_v2_plotting.py": "61a0f9f9bbde406591793ddafd1ec3546e0b7f7ffc46943006a50dcdbce9f8f0",
+      "src/eventfx/selected_v5_plotting.py": "1bbd1c3146f551745dfb61aca3e36287b6c90d5ba02da5d52d549eee771f10fc"
+    },
+    "numerics_recomputed": false,
+    "public_colors": {
+      "deep_green": "#285447"
+    },
+    "assets": {
+      "portfolio/assets/main-case/figure_01_physical_price_threshold.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "e9220970af984c0a3b91b7805c62f8b2580c9c8d867f491eb4dad490cbcb4bf4",
+        "versionless": true
+      },
+      "portfolio/assets/main-case/figure_01b_physical_price_threshold_zoom.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "90662cbb065d4a3163c5169476f6f4723755c9992a1b069f905a2273535e754f",
+        "versionless": true
+      },
+      "portfolio/assets/main-case/figure_02_normalized_cumulative_crossings.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "00cb4e8b129bde01e97029075ff2b96ca832d64ddc6905f6ae0c8f65e68b4e2a",
+        "versionless": true
+      },
+      "portfolio/assets/main-case/figure_03_event_time_price.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "ac0f2eecb6657907081fbaa8360506b2444ba81262f4856af33d5a437fec5c0c",
+        "versionless": true
+      },
+      "portfolio/assets/main-case/figure_03b_event_time_price_zoom.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "43beda26585025e13a0967f4d456eb7accacf3b1c148f35699fb5a0e44bd70bf",
+        "versionless": true
+      },
+      "portfolio/assets/main-case/figure_04_event_time_return_volatility.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "e183b14a6bbbc3f0aad4355437e9f355ccc2cbeff47256f542016a458f643840",
+        "versionless": true
+      },
+      "portfolio/assets/main-case/figure_04b_event_time_return_volatility_zoom.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "522c8b10c62339e766d32f2efe676118ff6b274576d7b4b3a815d2ef6edd4b07",
+        "versionless": true
+      },
+      "portfolio/assets/main-case/figure_05_event_time_jump_volatility.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "d586e78a3189cb1e41cf3509d30524910066f8dc4be64609ad382d1048ae5d81",
+        "versionless": true
+      },
+      "portfolio/assets/main-case/figure_05b_event_time_jump_volatility_zoom.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "5ed2037c319a5342822b826b291750cf66f5cefc635b50fc7975a321a25588f7",
+        "versionless": true
+      },
+      "portfolio/assets/global/figure_06_return_volatility_weights.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "e537edd0dd7cca0491b52957e2e48217e8ba25ec0edc29fbcfa8bcc0d61b2959",
+        "versionless": true
+      },
+      "portfolio/assets/global/figure_07_jump_volatility_weights.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "45ab1a20a75ef0703b703b551f0dcb8804fbe81dad8103d2193bbd4215bd9a65",
+        "versionless": true
+      },
+      "portfolio/assets/supporting-events/nfp-2026-03-06-physical.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "47cb25950e5d366703aebdfcea85ad53c2ae3232bc1e51621a2826bd509c654a",
+        "versionless": true
+      },
+      "portfolio/assets/supporting-events/nfp-2026-03-06-return-volatility.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "e28334dcc1c66ac7260fb5366588eb1ae73934dee83fd7af89197e8e0cae0e26",
+        "versionless": true
+      },
+      "portfolio/assets/supporting-events/fomc-2026-02-18-physical.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "c770fdcd23c661e9a2f893047ef4d8f3171b20322461d7d01cb837dbedf4d8f8",
+        "versionless": true
+      },
+      "portfolio/assets/supporting-events/fomc-2026-02-18-return-volatility.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "ad0af16e485cde6b985e56bf39831a2c4e7811c2f372339d84e5aa25f3c35948",
+        "versionless": true
+      },
+      "portfolio/assets/supporting-events/fomc-2026-03-18-physical.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "d60a7bb1db5cf0ff3cb9094170889ed5ab6b6549948f9e63ce10f8db1e312272",
+        "versionless": true
+      },
+      "portfolio/assets/supporting-events/fomc-2026-03-18-return-volatility.svg": {
+        "graphics_identical_except_version_wording_and_public_colors": true,
+        "graphics_sha256": "2ee692aeae98f2e1587713bdc99fdb22ba31546138104e10465b8f4d5f7d7442",
+        "versionless": true
+      }
+    }
+  },
+  "data_provider": "HistData",
+  "provider_timezone": "fixed EST, UTC-05:00, no DST; normalized to UTC",
+  "raw_data_redistribution_policy": "No raw or processed market-data files are included or redistributed; approved figures only.",
+  "asset_integrity_note": "Versionless public exports rendered from approved saved numerical inputs. All graphical contents match the preserved experimental assets except development/version wording and the documented deep_green #285447 public color overrides; SVG metadata is public and versionless.",
+  "outputs_sha256": {
+    "portfolio/project-report.md": "aef0f1d3af5ae85578e8073ebf289492213c79f430e26ba785d67db69de22980",
+    "portfolio/methodology-summary.md": "a6f1473eaa10850acb3ac83549be830a298f6c8587dbe9d87dd6a2017223b7ef",
+    "portfolio/project-card.json": "ebf7c574e41c2be601901e69a87fbe4013fdc97ed4f5e0fbc10017ad109db432",
+    "portfolio/website-handoff.md": "cc5275a52b465f07a7b0e0570fec7f37cfaa5655479fc1b01ab55e9e4c35fbf6",
+    "portfolio/assets/main-case/figure_01_physical_price_threshold.svg": "08531e902f228ce23fd961540b28a17b9bf1e8779edeaebf5084d5d9b3375181",
+    "portfolio/assets/main-case/figure_01b_physical_price_threshold_zoom.svg": "5dba8ab0a293b019196fc3a01e8cc27c68a2227268f282f1439d17f0b412b189",
+    "portfolio/assets/main-case/figure_02_normalized_cumulative_crossings.svg": "5a973d144ca8ba4d45e08f82006efb8bc9ffedee94775ddebee623656ca667dd",
+    "portfolio/assets/main-case/figure_03_event_time_price.svg": "0219aba3d34bd96f0dc4e9f2606319aea819044afea1d86044e246d669fa6eef",
+    "portfolio/assets/main-case/figure_03b_event_time_price_zoom.svg": "ef038278d92e5669d739b049cdfcb5b5d7ed1640cca4c6f537a0e0c01790908b",
+    "portfolio/assets/main-case/figure_04_event_time_return_volatility.svg": "eacdc22984debdf67c3cd98ed0ac90123b5067e5e015e5229338dac9ec6ee826",
+    "portfolio/assets/main-case/figure_04b_event_time_return_volatility_zoom.svg": "cdf58e4b8bbe1b284c5efb917f6614265baf3274c550447918345688ef81847f",
+    "portfolio/assets/main-case/figure_05_event_time_jump_volatility.svg": "a5e247b948c972f1cf5de4941190720534d6b1371c86c77b35798e3b91fd6bb8",
+    "portfolio/assets/main-case/figure_05b_event_time_jump_volatility_zoom.svg": "464221145080a35319baa10259f82452607c940942d715648c820d3097c5fdfc",
+    "portfolio/assets/global/figure_06_return_volatility_weights.svg": "546d4e0896f141dc4f13865c4b2bf1de6bf6f55d8fe7717b15cacc0d73e36c54",
+    "portfolio/assets/global/figure_07_jump_volatility_weights.svg": "61673172f306f0c7cc634794747fe70b8efe4da21c0be9580ab26288e8ece3d5",
+    "portfolio/assets/supporting-events/nfp-2026-03-06-physical.svg": "1d8cdef6c49c8953e548bffb18049df5d05be11033eb9e89abbec6501d3b2262",
+    "portfolio/assets/supporting-events/nfp-2026-03-06-return-volatility.svg": "efe3a817a96ba55274cd82c71c90a8b780b322007e0eda8e78880a384a740bc1",
+    "portfolio/assets/supporting-events/fomc-2026-02-18-physical.svg": "5fff18eec2e60d6ce8dc613a2b791b09102919ca9c02c94328ca8da46a079fe4",
+    "portfolio/assets/supporting-events/fomc-2026-02-18-return-volatility.svg": "4633ee12ee4667334f9ae0f987f95f8f18b75ee571f5fb0ab0dadfbe3da511b1",
+    "portfolio/assets/supporting-events/fomc-2026-03-18-physical.svg": "d471e48026313e671f9b96c6f052b99b50c08952b78722235745fa9ce927c41b",
+    "portfolio/assets/supporting-events/fomc-2026-03-18-return-volatility.svg": "77adad222561f7900204c5746c12c09f9bf0f4ad001d269849d5b8b74ba0b3e3"
+  },
+  "packaging_script_sha256": "a529521652b41e3b98ba60656fbabf39b1bdab894b04c06f3fe060d775e1efc1"
+}

@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProfilePortrait from '../components/ProfilePortrait.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ProfileLink from '../components/ProfileLink.astro';
+import { projects } from '../data/projects';
+import { PROFILE_LINKS, PORTRAIT } from '../data/site';
+---
+
+<BaseLayout title="Wangdong Jia — Quantitative Research" description="Wangdong Jia, PhD Candidate at UC Berkeley. Research interests in stochastic systems, deep learning, optimization, and quantitative finance.">
+  <div class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-composition">
+        <div class="hero-title-block">
+          <h1 id="hero-title">Wangdong Jia</h1>
+        </div>
+        <div class="hero-statement">
+          <p class="hero-affiliation">PhD Candidate<br />UC Berkeley</p>
+          <p>I study how mathematical models help us understand complex, uncertain systems.</p>
+        </div>
+        <div class="hero-interests">
+          <p class="section-label">Research interests</p>
+          <p class="hero-disciplines">Stochastic Systems · Deep Learning · Optimization</p>
+        </div>
+        <ProfilePortrait {...PORTRAIT} />
+        <nav class="hero-panel hero-panel--quiet hero-menu" aria-label="Homepage sections">
+          <a href="#selected-work">Selected Work</a>
+          <a href="#background">Background</a>
+          <a href="#research-experience">Research &amp; Experience</a>
+          <a href="#teaching">Teaching</a>
+        </nav>
+        <div class="hero-profiles"><div class="profile-links" aria-label="Resume and LinkedIn">{PROFILE_LINKS.map((link) => <ProfileLink {...link} />)}</div></div>
+      </div>
+    </section>
+
+    <section class="selected-work" id="selected-work" aria-labelledby="work-heading" tabindex="-1">
+      <div class="section-heading"><h2 id="work-heading">Selected work</h2><span class="section-meta">Research notebook / 01</span></div>
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </section>
+
+    <section class="background-section profile-section" id="background" aria-labelledby="background-heading" tabindex="-1">
+      <h2 class="section-label" id="background-heading">Background</h2>
+      <div class="background-copy profile-section-copy">
+        <p>I am a PhD candidate in Industrial Engineering and Operations Research at UC Berkeley. My work sits at the intersection of stochastic systems, optimization, learning, and game-theoretic models, with an emphasis on turning mathematical structure into computational methods. I study heterogeneous interacting systems and equilibrium computation through mathematical analysis and deep-learning-based numerical methods.</p>
+        <p>My earlier training in applied mathematics and physics provides a foundation for this work, connecting questions about uncertainty and interaction with the analysis and computation of mathematical models.</p>
+      </div>
+    </section>
+
+    <section class="profile-section" id="research-experience" aria-labelledby="experience-heading" tabindex="-1">
+      <h2 class="section-label" id="experience-heading">Research &amp; Experience</h2>
+      <div class="profile-section-copy experience-entries">
+        <article>
+          <h3>Quantitative Strategist Intern — Morgan Stanley</h3>
+          <p>Worked on event-time FX volatility, meaningful price clocks, smooth filtering, and empirical validation around intraday and macroeconomic market activity.</p>
+        </article>
+        <article>
+          <h3>Stochastic Systems, Optimization &amp; Learning</h3>
+          <p>Research on heterogeneous interacting systems and equilibrium computation, combining mathematical analysis, optimization, and deep-learning-based numerical methods.</p>
+        </article>
+        <article>
+          <h3>Healthcare Overutilization Detection</h3>
+          <p>Applied supervised, ensemble, and semi-supervised learning methods to healthcare overutilization detection, using nested cross-validation, feature selection, and model comparison.</p>
+        </article>
+        <article>
+          <h3>Noise-Robust Estimation for Fractional Models</h3>
+          <p>Developed pre-averaging-based estimation methods for fractional processes observed with noise; this research resulted in a publication in the <em>Journal of Applied Probability</em>.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="profile-section" id="teaching" aria-labelledby="teaching-heading" tabindex="-1">
+      <h2 class="section-label" id="teaching-heading">Teaching</h2>
+      <div class="profile-section-copy">
+        <h3>Instructor / Teaching Assistant — UC Berkeley</h3>
+        <p>Teaching experience across Industrial and Commercial Database Systems; Probability and Risk Analysis for Engineers; Introduction to Stochastic Processes; and Machine Learning and Data Analytics II.</p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

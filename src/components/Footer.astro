@@ -1,0 +1,12 @@
+---
+import ProfileLink from './ProfileLink.astro';
+import { EMAIL } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer container">
+  <div class="footer-identity"><span>Wangdong Jia</span><span class="copyright">© {year}</span></div>
+  <div class="footer-links" aria-label="Contact">
+    <ProfileLink label="Email" href={EMAIL ? `mailto:${EMAIL}` : null} />
+  </div>
+</footer>

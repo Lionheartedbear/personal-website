@@ -1,0 +1,17 @@
+{
+  "title": "Volatility on an Event Clock",
+  "slug": "event-time-volatility",
+  "eyebrow": "Quantitative Research",
+  "subtitle": "Physical time moves uniformly. Markets do not.",
+  "description": "What changes when price movement sets the clock? This EUR/USD case study transforms irregular threshold crossings into event-time price history, then uses causal filters to examine return volatility and rapid variation around scheduled economic releases.",
+  "tags": [
+    "FX",
+    "Volatility",
+    "Market Microstructure",
+    "Signal Processing",
+    "Python"
+  ],
+  "github_url": "https://github.com/Lionheartedbear/event-time-fx-volatility",
+  "hero_asset": "assets/main-case/figure_01b_physical_price_threshold_zoom.svg",
+  "primary_cta": "Explore project"
+}

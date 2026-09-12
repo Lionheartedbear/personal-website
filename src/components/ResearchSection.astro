@@ -1,0 +1,14 @@
+---
+interface Props { id: string; title: string; number?: string; }
+const { id, title, number } = Astro.props;
+---
+
+<section class="research-section" aria-labelledby={id}>
+  <header class="research-section-heading">
+    <span class="research-section-number" aria-hidden="true">{number ? `§${number}` : '—'}</span>
+    <h2 id={id}>{title}</h2>
+  </header>
+  <div class="research-section-content">
+    <slot />
+  </div>
+</section>

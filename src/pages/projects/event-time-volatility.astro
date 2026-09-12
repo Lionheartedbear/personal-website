@@ -1,0 +1,169 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import ResearchSection from '../../components/ResearchSection.astro';
+import Figure from '../../components/Figure.astro';
+import Math from '../../components/Math.astro';
+import { Content as Methodology } from '../../content/event-time-volatility/methodology-summary.md';
+import figures from '../../content/event-time-volatility/figures.json';
+import { eventTimeVolatility } from '../../data/projects';
+
+const intro = 'This project changes the clock before measuring volatility. It turns a public EUR/USD quote stream into a sequence of qualifying price movements, then applies causal filters to that sequence. The question is how this change of coordinates represents market activity, rather than whether it produces a profitable trading signal.';
+const releases = [
+  { label: 'NFP / Employment Situation', date: 'March 6, 2026', time: '13:30 UTC', physical: figures.marchNfpPhysical, event: figures.marchNfpReturn },
+  { label: 'FOMC minutes', date: 'February 18, 2026', time: '19:00 UTC', physical: figures.februaryMinutesPhysical, event: figures.februaryMinutesReturn },
+  { label: 'FOMC policy statement', date: 'March 18, 2026', time: '18:00 UTC', physical: figures.marchStatementPhysical, event: figures.marchStatementReturn },
+];
+---
+
+<ProjectLayout project={eventTimeVolatility} intro={intro}>
+  <aside slot="disclaimer" class="project-disclaimer" aria-label="Illustrative numerical settings">
+    <p>The exact numerical settings used in this project are for illustrative purposes only. In practical use, parameter choices should be adapted to the market and to the model-selection objective.</p>
+  </aside>
+  <Figure slot="hero" {...figures.physicalBroad} id="physical-time-broad" eager caption="February 11, 2026 · The broad 13:00–14:15 UTC window around the 13:30 UTC release. Accepted observations retain their actual prices and irregular arrival times." />
+
+  <div class="case-opening prose">
+    <p>A second of foreign-exchange trading can contain very little price movement or a rapid sequence of revisions. A volatility measure built on equally spaced timestamps therefore observes a market whose activity is uneven. At quote frequency, bid/ask effects and small oscillations also complicate the distinction between movement and noise.</p>
+    <p>The main example surrounds the February 11, 2026 NFP / Employment Situation release at 13:30 UTC. Its visible price response makes the construction easy to follow: the same observations can be examined first in physical time and then in event time.</p>
+  </div>
+
+  <nav class="case-navigation" aria-label="Case study sections">
+    <a href="#define-the-clock">§1 / The clock</a>
+    <a href="#event-time">§2 / Event time</a>
+    <a href="#return-volatility">§3 / Return volatility</a>
+    <a href="#jump-volatility">§4 / Jump volatility</a>
+    <a href="#february-nfp">§5 / February NFP</a>
+    <a href="#different-releases">§6 / Other releases</a>
+    <a href="#demonstrates">§7 / What it demonstrates</a>
+    <a href="#methodology">§8 / Methodology</a>
+  </nav>
+
+  <ResearchSection number="1" id="define-the-clock" title="Defining the clock">
+    <div class="prose">
+      <p>For each quote, the mid-price is the average of bid and ask. Detection uses a second, deliberately modest average: the current mid-price and the immediately preceding mid-price. Writing these as <Math inline tex="p_i" /> and <Math inline tex="p_{i-1}" />, the causal trigger is:</p>
+      <Math tex="q_i = (p_{i-1}+p_i)/2." />
+      <p>The initial price seeds the clock. A new observation is accepted when the trigger moves at least <strong>0.2 pip</strong>, or <strong>0.00002 EUR/USD price units</strong>, from its last accepted value. The comparison includes only a negligible floating-point boundary tolerance.</p>
+      <p>Crucially, detection and recording are distinct. The two-quote average controls acceptance, but the recorded observation is the <strong>actual current mid-price</strong>, with its actual timestamp. Overshoot is retained, and the accepted trigger becomes the next reference. Prices are neither replaced by averages nor forced onto a ladder of exact threshold-sized steps.</p>
+    </div>
+    <Figure {...figures.physicalZoom} id="physical-time-zoom" caption="Release detail · EUR/USD mid-price, causal trigger, and accepted crossings around the 13:30 UTC release. The x-axis is physical time." />
+    <p class="figure-context">This physical-time zoom separates the raw path, detection signal, and accepted observations within the broad window above. Its x-axis remains physical UTC time; irregular spacing between accepted points is part of the result.</p>
+  </ResearchSection>
+
+  <ResearchSection number="2" id="event-time" title="From time to events">
+    <div class="prose">
+      <p>Accepted crossings cluster when qualifying movements arrive quickly and spread apart when they arrive slowly. The normalized cumulative-crossing curve makes that changing pace visible: a steeper segment means more crossings per unit of physical time. It divides cumulative crossings by the complete plotted-day total, starts at zero and ends at one.</p>
+    </div>
+    <Figure {...figures.cumulative} caption="Physical time · Normalized cumulative threshold crossings over the complete plotted day." />
+    <p class="figure-context">This curve is retrospective because its denominator uses the whole day. It explains the clock; it is <strong>not an estimator input</strong>.</p>
+    <div class="axis-comparison" aria-label="The same observations under two clocks">
+      <div><span class="section-label">Physical time</span><p>Irregular accepted-event arrival times.</p></div>
+      <div><span class="section-label">Event time</span><p>Consecutive indices: 0, 1, 2, …</p></div>
+      <p class="axis-takeaway">Same accepted observations. Different x-axis.</p>
+    </div>
+    <div class="prose">
+      <p>Now give the accepted prices consecutive indices, <Math inline tex="n = 0, 1, 2, \ldots" />. Their values and ordering are unchanged, but their horizontal spacing becomes uniform. Active periods consume indices quickly in physical time; quiet periods consume them slowly. One event increment represents a qualifying trigger movement rather than a fixed number of seconds.</p>
+    </div>
+    <Figure {...figures.eventBroad} caption="Event time · The accepted EUR/USD observations, now spaced uniformly on consecutive event indices." />
+    <details class="figure-disclosure" id="event-price-detail">
+      <summary>Price around the release <span>Event indices 322–442</span></summary>
+      <Figure {...figures.eventZoom} id="event-price-zoom" caption="The shared event-index zoom. The first accepted observation at or after the release is display index 382." />
+    </details>
+    <div class="prose">
+      <p>That coordinate change is the central idea. A fixed amount of event history has a variable physical duration. It does not make volatility constant or establish that every retained move is informative. It changes which observations define the measurement horizon.</p>
+    </div>
+  </ResearchSection>
+
+  <ResearchSection number="3" id="return-volatility" title="Return volatility">
+    <div class="prose">
+      <p>Let <Math inline tex="X_n = \log(P_n)" />, where <Math inline tex="P_n" /> is the accepted price. A smooth return operator distributes weight across <strong>20 event prices</strong>:</p>
+      <Math tex="R_n=\sum_{j=0}^{19}h_jX_{n-j}." />
+      <p>Recent and older prices receive opposite signs. Small edge weights and two smooth lobes replace a hard two-endpoint difference with a distributed return measurement. The public Kaiser-derived kernel is approximately zero-sum and oriented so a rising log-price trend produces a positive response.</p>
+      <p>The squared filtered returns are then averaged with <strong>60 nonnegative Kaiser weights</strong>, summing to one, and square-rooted.</p>
+    </div>
+    <p class="method-sequence">20 price coefficients <span aria-hidden="true">→</span> square <span aria-hidden="true">→</span> 60 variance weights <span aria-hidden="true">→</span> square root</p>
+    <div class="volatility-views">
+      <Figure {...figures.returnBroad} id="return-volatility-broad" caption="Broad context · Return volatility across the complete event-index period corresponding to 13:00–14:15 UTC. Scaled log-return basis points, not annualized." />
+      <Figure {...figures.returnZoom} id="return-volatility-zoom" caption="Release detail · Event indices 322–442 isolate the response around the shared release reference at 382, using the same return-volatility construction." />
+    </div>
+    <details class="figure-disclosure">
+      <summary>The 20 / 60 weight profiles <span>Technical detail</span></summary>
+      <Figure {...figures.returnWeights} />
+      <div class="prose">
+        <Math tex="V^R_n=\sum_{j=0}^{59}w^R_jR_{n-j}^{2}" />
+        <Math tex="\sigma^R_{n,\mathrm{unscaled}}=\sqrt{V^R_n}." />
+        <p>The first kernel has random-walk variance gain <strong>24</strong>. Its <strong>20-coefficient support</strong> and <strong>24-increment normalization target</strong> are different quantities. This normalization matches an independent-increment reference scale; it does not make the estimator unbiased in empirical markets. All weights act on current or past observations, although smooth trailing weights introduce lag.</p>
+      </div>
+    </details>
+  </ResearchSection>
+
+  <ResearchSection number="4" id="jump-volatility" title="Jump volatility">
+    <div class="prose">
+      <p>A second measure emphasizes rapid event-to-event variation. Its first stage uses <strong>12 coefficients</strong> with alternating signs inside a symmetric Kaiser envelope.</p>
+    </div>
+    <div class="alternating-signs" aria-label="Alternating positive and negative weights"><span aria-hidden="true">+ − + − + − + − + − + −</span><p>Alternating signs. A smooth Kaiser amplitude envelope.</p></div>
+    <div class="prose">
+      <p>The kernel is scaled to the same random-walk gain of 24. Squared outputs are averaged with <strong>12 nonnegative, unit-sum Kaiser weights</strong>, then square-rooted.</p>
+      <p>“Jump volatility” is an illustrative high-frequency measure designed to emphasize rapid event-to-event variation. It can respond to abrupt movement, rapid oscillation and microstructure effects. It is <strong>not a formal detector</strong> or decomposition of continuous versus discontinuous price moves. Its different spectral weights and shorter averaging history explain why it need not trace the return-volatility curve.</p>
+    </div>
+    <div class="volatility-views">
+      <Figure {...figures.jumpBroad} id="jump-volatility-broad" caption="Broad context · The high-frequency counterpart across the complete event-index period corresponding to 13:00–14:15 UTC. Scaled log-return basis points, not annualized." />
+      <Figure {...figures.jumpZoom} id="jump-volatility-zoom" caption="Release detail · The same event indices 322–442 and reference at 382 reveal rapid event-to-event variation around the release." />
+    </div>
+    <details class="figure-disclosure">
+      <summary>The 12 / 12 weight profiles <span>Technical detail</span></summary>
+      <Figure {...figures.jumpWeights} />
+      <Math tex="J_n=\sum_{j=0}^{11}g_jX_{n-j}" />
+      <Math tex="g_{0,j}=(-1)^j\operatorname{Kaiser}_{12}(j;8)." />
+    </details>
+  </ResearchSection>
+
+  <ResearchSection number="5" id="february-nfp" title="February NFP">
+    <p class="section-kicker">February 11, 2026 / 13:30 UTC</p>
+    <div class="prose">
+      <p>The broad <strong>13:00–14:15 UTC</strong> window contains <strong>17,598 quotes</strong> and <strong>5,359 accepted threshold crossings</strong>. EUR/USD spans approximately <strong>71.3 pips</strong> within that interval. The price moves sharply near the scheduled release, while the cumulative diagnostic shows crossings accumulating faster around the same period.</p>
+      <p>The first accepted observation at or after release is <strong>13:30:01.183 UTC</strong>, display index <strong>382</strong>. That reference is shared by the price, return-volatility and jump-volatility views. Their event-index zooms all cover <strong>322–442</strong>, so differences between the curves reflect their operators rather than mismatched samples.</p>
+    </div>
+    <aside class="release-alignment" aria-label="Shared release alignment">
+      <p class="alignment-value">382<span> / the same release reference</span></p>
+      <p>Three views of event indices 322–442.</p>
+
+    </aside>
+    <div class="prose">
+      <p>Both measures show pronounced responses near the marked release. These plots document timing and price variation; they do not establish which component of the announcement caused the movement. This case was selected for visual clarity, without a strategy-performance selection criterion.</p>
+    </div>
+  </ResearchSection>
+
+  <ResearchSection number="6" id="different-releases" title="Other releases">
+    <div class="prose">
+      <p>The same threshold, filters, normalizations and scale are applied without release-specific retuning to three supporting examples. Each pair shows the physical-time price zoom beside event-time return volatility. They provide context for the construction across distinct releases, rather than a statistical ranking of outcomes.</p>
+    </div>
+    <div class="release-comparisons">
+      {releases.map((release) => (
+        <section class="release-pair" aria-label={`${release.date} — ${release.label}`}>
+          <header><h3>{release.label}</h3><p>{release.date} · {release.time}</p></header>
+          <div class="release-figures">
+            <div><p class="section-label">Physical time / UTC</p><Figure {...release.physical} compact caption="Mid-price, trigger, and accepted crossings." /></div>
+            <div><p class="section-label">Event time / accepted index</p><Figure {...release.event} compact caption="Return volatility · Scaled log-return bp." /></div>
+          </div>
+        </section>
+      ))}
+    </div>
+  </ResearchSection>
+
+  <ResearchSection number="7" id="demonstrates" title="Research takeaways">
+    <div class="prose">
+      <p>Changing the clock links sampling and measurement. Threshold acceptance defines an irregular observation sequence; event indexing gives it a regular computational axis; causal signal processing measures variation over that history. The two public filter constructions expose different frequencies of movement while keeping the accepted prices fixed. Explicit alignment and reproducible figures make each step inspectable.</p>
+    </div>
+  </ResearchSection>
+
+  <ResearchSection number="8" id="methodology" title="Methodology & limits">
+    <div class="prose">
+      <p>The examples use public HistData EUR/USD quotes, interpreting provider timestamps as <strong>fixed EST, UTC−05:00 without daylight-saving adjustment</strong>, then converting to UTC. Raw data are not redistributed. These are public illustrative Kaiser filters, with no proprietary coefficients or exact proprietary Bessel-filter claim.</p>
+      <p>A fixed multiplier <strong>0.179224</strong> is applied once after each square root, identically across all four releases. It was chosen retrospectively from an August public example as an illustrative scale calibration. It is not a theoretical convexity correction, an unbiasedness theorem, a pip-to-bp identity or an event-specific fit. Figures show 10,000 times the scaled log-return volatility in basis-point units, without annualization.</p>
+      <p>The filters are causal conditional on their fixed parameters; the scale selection and case study are retrospective. There is no trading strategy, alpha claim or forecasting-superiority claim.</p>
+    </div>
+    <details class="technical-disclosure" id="technical-methodology">
+      <summary>Technical methodology <span>Trigger, operators, normalization, units &amp; limitations</span></summary>
+      <div class="methodology-content prose"><Methodology /></div>
+    </details>
+  </ResearchSection>
+</ProjectLayout>

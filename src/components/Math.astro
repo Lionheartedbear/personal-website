@@ -1,0 +1,14 @@
+---
+import katex from 'katex';
+interface Props { tex: string; inline?: boolean; }
+const { tex, inline = false } = Astro.props;
+const markup = katex.renderToString(tex, {
+  displayMode: !inline,
+  output: 'mathml',
+  throwOnError: true,
+  strict: 'error',
+  trust: false,
+});
+---
+
+{inline ? <span class="inline-math" set:html={markup} /> : <div class="equation" tabindex="0" role="region" aria-label="Equation" set:html={markup} />}

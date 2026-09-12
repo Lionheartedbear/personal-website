@@ -1,0 +1,22 @@
+---
+import type { Project } from '../data/projects';
+import SectionLabel from './SectionLabel.astro';
+import Figure from './Figure.astro';
+import figures from '../content/event-time-volatility/figures.json';
+interface Props { project: Project; }
+const { project } = Astro.props;
+---
+
+<article class="project-feature">
+  <div class="project-feature-copy">
+    <SectionLabel number={project.number} text={project.category} />
+    <h3>{project.title}</h3>
+    <p class="project-subtitle">{project.subtitle}</p>
+    <p class="project-description">{project.description}</p>
+    <ul class="project-tags" aria-label="Project topics">{project.tags.map((tag) => <li>{tag}</li>)}</ul>
+    <div class="project-actions">
+      <a class="text-link" href={project.href}>{project.primaryCta} <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <Figure {...figures.physicalBroad} compact caption="EUR/USD around the February NFP release · Physical time, UTC." />
+</article>

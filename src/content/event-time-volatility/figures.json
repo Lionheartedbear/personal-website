@@ -1,0 +1,121 @@
+{
+  "physicalBroad": {
+    "src": "/projects/event-time-volatility/main-case/figure_01_physical_price_threshold.svg",
+    "alt": "EUR/USD mid-price, two-quote trigger and accepted crossings around the February NFP release",
+    "width": 3600,
+    "height": 1872,
+    "number": "01"
+  },
+  "physicalZoom": {
+    "src": "/projects/event-time-volatility/main-case/figure_01b_physical_price_threshold_zoom.svg",
+    "alt": "The same physical-time price and threshold construction, zoomed around the release",
+    "width": 3600,
+    "height": 1872,
+    "number": "01B"
+  },
+  "cumulative": {
+    "src": "/projects/event-time-volatility/main-case/figure_02_normalized_cumulative_crossings.svg",
+    "alt": "Normalized cumulative threshold crossings over the full physical-time day",
+    "width": 3600,
+    "height": 1872,
+    "number": "02"
+  },
+  "eventBroad": {
+    "src": "/projects/event-time-volatility/main-case/figure_03_event_time_price.svg",
+    "alt": "The accepted EUR/USD price history on consecutive event indices",
+    "width": 3600,
+    "height": 1872,
+    "number": "03"
+  },
+  "eventZoom": {
+    "src": "/projects/event-time-volatility/main-case/figure_03b_event_time_price_zoom.svg",
+    "alt": "Accepted event prices around the release, using the shared event-index zoom",
+    "width": 3600,
+    "height": 1872,
+    "number": "03B"
+  },
+  "returnBroad": {
+    "src": "/projects/event-time-volatility/main-case/figure_04_event_time_return_volatility.svg",
+    "alt": "Return volatility across the broad event-index period",
+    "width": 3600,
+    "height": 1872,
+    "number": "04"
+  },
+  "returnZoom": {
+    "src": "/projects/event-time-volatility/main-case/figure_04b_event_time_return_volatility_zoom.svg",
+    "alt": "Return volatility around the February release on the shared event-index zoom",
+    "width": 3600,
+    "height": 1872,
+    "number": "04B"
+  },
+  "jumpBroad": {
+    "src": "/projects/event-time-volatility/main-case/figure_05_event_time_jump_volatility.svg",
+    "alt": "Jump volatility across the same broad event-index period",
+    "width": 3600,
+    "height": 1872,
+    "number": "05"
+  },
+  "jumpZoom": {
+    "src": "/projects/event-time-volatility/main-case/figure_05b_event_time_jump_volatility_zoom.svg",
+    "alt": "Jump volatility over exactly the same event-index zoom",
+    "width": 3600,
+    "height": 1872,
+    "number": "05B"
+  },
+  "returnWeights": {
+    "src": "/projects/event-time-volatility/global/figure_06_return_volatility_weights.svg",
+    "alt": "Actual 20-coefficient return kernel and 60-weight variance profile",
+    "width": 3600,
+    "height": 1728,
+    "number": "06"
+  },
+  "jumpWeights": {
+    "src": "/projects/event-time-volatility/global/figure_07_jump_volatility_weights.svg",
+    "alt": "Actual alternating-sign jump kernel and its 12-weight variance profile",
+    "width": 3600,
+    "height": 1728,
+    "number": "07"
+  },
+  "marchNfpPhysical": {
+    "src": "/projects/event-time-volatility/supporting-events/nfp-2026-03-06-physical.svg",
+    "alt": "March NFP physical-time price and threshold zoom",
+    "width": 3600,
+    "height": 1872,
+    "number": "01B"
+  },
+  "marchNfpReturn": {
+    "src": "/projects/event-time-volatility/supporting-events/nfp-2026-03-06-return-volatility.svg",
+    "alt": "March NFP event-time return-volatility zoom",
+    "width": 3600,
+    "height": 1872,
+    "number": "04B"
+  },
+  "februaryMinutesPhysical": {
+    "src": "/projects/event-time-volatility/supporting-events/fomc-2026-02-18-physical.svg",
+    "alt": "February FOMC minutes physical-time price and threshold zoom",
+    "width": 3600,
+    "height": 1872,
+    "number": "01B"
+  },
+  "februaryMinutesReturn": {
+    "src": "/projects/event-time-volatility/supporting-events/fomc-2026-02-18-return-volatility.svg",
+    "alt": "February FOMC minutes event-time return-volatility zoom",
+    "width": 3600,
+    "height": 1872,
+    "number": "04B"
+  },
+  "marchStatementPhysical": {
+    "src": "/projects/event-time-volatility/supporting-events/fomc-2026-03-18-physical.svg",
+    "alt": "March FOMC statement physical-time price and threshold zoom",
+    "width": 3600,
+    "height": 1872,
+    "number": "01B"
+  },
+  "marchStatementReturn": {
+    "src": "/projects/event-time-volatility/supporting-events/fomc-2026-03-18-return-volatility.svg",
+    "alt": "March FOMC statement event-time return-volatility zoom",
+    "width": 3600,
+    "height": 1872,
+    "number": "04B"
+  }
+}
