@@ -1,8 +1,7 @@
-// Add the real PDF at this path, then set the Resume entry's available flag.
-// Keep its destination configured while avoiding a broken public link.
+// Shared public URL for the supplied Resume PDF.
 export const RESUME_HREF = '/resume/Wangdong-Jia-Resume.pdf';
 export const PROFILE_LINKS: { label: string; href: string; available?: boolean }[] = [
-  { label: 'Resume', href: RESUME_HREF, available: false },
+  { label: 'Resume', href: RESUME_HREF, available: true },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/wangdong-jia' },
 ];
 

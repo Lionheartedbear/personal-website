@@ -43,7 +43,7 @@ Astro 7 runs the preview server in the background. Stop it with `npm run preview
 - `src/content/event-time-volatility/`: exact copies of the five frozen handoff documents, plus a figure catalog using report alt text and original aspect ratios.
 - `src/styles/global.css`: colors, typography, spacing, components, and responsive rules.
 - `public/projects/event-time-volatility/`: 17 unchanged SVGs, retaining the `main-case/`, `global/`, and `supporting-events/` directories and filenames.
-- `public/resume/`, `public/images/`: reserved resume and portrait directories; no PDF or portrait has been fabricated.
+- `public/resume/`: contains the supplied `Wangdong-Jia-Resume.pdf`; `public/images/`: portrait assets.
 - `scripts/verify-portfolio.mjs`: verifies frozen document/asset SHA-256 hashes, figure integration, report alt text, and aspect ratios against the copied manifest.
 
 ## Frozen research integration
@@ -60,7 +60,7 @@ The provided project GitHub URL is `https://github.com/Lionheartedbear/event-tim
 
 All personal destinations live in `src/data/site.ts`. LinkedIn is configured as `https://www.linkedin.com/in/wangdong-jia` and opens in a new tab with `noopener noreferrer` and an accessible label. No personal GitHub destination is currently displayed.
 
-`RESUME_HREF` is `/resume/Wangdong-Jia-Resume.pdf`. The PDF is not present; `public/resume/` is reserved with `.gitkeep`. Resume remains a non-interactive label with a forthcoming description, so the site does not publish a broken link. Once the real PDF is added, set the Resume entry’s `available` flag to `true`. The link will then use the already configured path.
+`RESUME_HREF` is `/resume/Wangdong-Jia-Resume.pdf`, served from the supplied PDF at `public/resume/Wangdong-Jia-Resume.pdf`. The Resume entry’s `available` flag is `true`, so the existing homepage link is active. The PDF is copied unchanged into the build output.
 
 Email remains a `pending` placeholder. Add the approved portrait to `public/images/`, then set `PORTRAIT.src`, alt text, and dimensions in `src/data/site.ts`. The existing portrait region remains unchanged until then.
 
@@ -103,7 +103,7 @@ All 17 frozen SVGs remain. Main-case figure families follow 01 → 01B, 03 → 0
 
 ### Navigation and accessibility
 
-The yellow block shows Resume (forthcoming) and the active LinkedIn link. The adjacent internal menu links to `#selected-work`, `#background`, `#research-experience`, and `#teaching`, in page order. Each target is a semantic section with a heading and `tabindex="-1"`, allowing native anchor navigation to move keyboard focus. There is no sticky navigation. Explore project remains the single project CTA; the title and preview figure are not duplicate links. The footer keeps only identity/copyright and the existing email placeholder. The homepage currently has seven anchors, including the accessibility skip link; activating the real Resume will add one.
+The yellow block shows active Resume and LinkedIn links. The adjacent internal menu links to `#selected-work`, `#background`, `#research-experience`, and `#teaching`, in page order. Each target is a semantic section with a heading and `tabindex="-1"`, allowing native anchor navigation to move keyboard focus. There is no sticky navigation. Explore project remains the single project CTA; the title and preview figure are not duplicate links. The footer keeps only identity/copyright and the existing email placeholder. The homepage has eight anchors, including the accessibility skip link.
 
 The project page retains its eight section-navigation links, now labeled §1–§8, one GitHub link, and “Back to Main Page” links at the top and bottom, both pointing to `/`. Figure labels remain 01, 01B, and so on, distinct from section numbers. Including the skip link, it has 12 anchors. All image-opening links and fine-grained figure-reference links are removed. Native `<details>` controls still expose technical figures and methodology without JavaScript.
 
