@@ -5,6 +5,7 @@ const root = new URL('../', import.meta.url);
 const output = new URL('dist/', root);
 const figures = JSON.parse(await readFile(new URL('src/content/event-time-volatility/figures.json', root), 'utf8'));
 const publicAssets = new Set([
+  '.nojekyll',
   'favicon.svg', 'robots.txt', 'images/portrait.jpg', 'resume/Wangdong-Jia-Resume.pdf',
   ...Object.values(figures).map(({ src }) => src.slice(1)),
 ]);
