@@ -34,6 +34,7 @@ const mathMarkdown = unified({
 });
 
 export default defineConfig({
+  site: 'https://wangdong-jia.github.io',
   output: 'static',
   markdown: {
     processor: {

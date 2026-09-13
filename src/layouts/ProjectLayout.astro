@@ -6,7 +6,7 @@ interface Props { project: Project; intro: string; }
 const { project, intro } = Astro.props;
 ---
 
-<BaseLayout title={`${project.title} — Wangdong Jia`} description={project.description}>
+<BaseLayout title={`${project.title} | Wangdong Jia`} description="A quantitative research case study of EUR/USD event time and volatility, using threshold crossings and causal filters around economic releases." type="article">
   <article class="project-page container">
     <div class="project-topline">
       <a class="back-link" href="/"><span aria-hidden="true">←</span> Back to Main Page</a>

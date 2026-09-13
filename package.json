@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "check": "astro check",
-    "build": "astro build",
+    "build": "astro build && node scripts/verify-public-build.mjs",
     "preview": "astro preview",
     "verify:portfolio": "node scripts/verify-portfolio.mjs"
   },

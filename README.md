@@ -40,11 +40,11 @@ Astro 7 runs the preview server in the background. Stop it with `npm run preview
 - `src/components/`: shared navigation, project feature, external SVG figures, static math, research sections, profile links, and portrait.
 - `src/data/projects.ts`: typed project metadata imported directly from the frozen card JSON.
 - `src/data/site.ts`: personal profile URLs, email, and optional portrait configuration.
-- `src/content/event-time-volatility/`: exact copies of the five frozen handoff documents, plus a figure catalog using report alt text and original aspect ratios.
+- `src/content/event-time-volatility/`: the upstream manifest, frozen methodology, three website-adapted handoff documents, and a figure catalog using report alt text and original aspect ratios.
 - `src/styles/global.css`: colors, typography, spacing, components, and responsive rules.
 - `public/projects/event-time-volatility/`: 17 unchanged SVGs, retaining the `main-case/`, `global/`, and `supporting-events/` directories and filenames.
 - `public/resume/`: contains the supplied `Wangdong-Jia-Resume.pdf`; `public/images/`: portrait assets.
-- `scripts/verify-portfolio.mjs`: verifies frozen document/asset SHA-256 hashes, figure integration, report alt text, and aspect ratios against the copied manifest.
+- `scripts/verify-portfolio.mjs`: verifies 17 SVGs and methodology against the unchanged upstream manifest, three website documents against `scripts/website-documents.sha256.json`, and figure integration, alt text, and aspect ratios.
 
 ## Frozen research integration
 
@@ -54,7 +54,7 @@ The case study follows the frozen report and handoff order. Figures use external
 
 KaTeX renders equations into native MathML at build time, with no runtime scripts or bundled font files. The Markdown processor normalizes only `$$` delimiter placement in memory so the frozen multiline equations parse correctly, shifts embedded heading levels, and makes wide equation regions keyboard accessible. The original methodology file remains byte-identical to the handoff. `npm run verify:portfolio` checks this.
 
-The provided project GitHub URL is `https://github.com/Lionheartedbear/event-time-fx-volatility`. An unauthenticated HTTP check during integration returned 404; the canonical link is retained and its public availability still needs confirmation.
+The public project GitHub URL is `https://github.com/wangdong-jia/event-time-volatility`. It returned HTTP 200 during the final release audit.
 
 ## Profile destinations and remaining assets
 
@@ -62,7 +62,7 @@ All personal destinations live in `src/data/site.ts`. LinkedIn is configured as 
 
 `RESUME_HREF` is `/resume/Wangdong-Jia-Resume.pdf`, served from the supplied PDF at `public/resume/Wangdong-Jia-Resume.pdf`. The Resume entry’s `available` flag is `true`, so the existing homepage link is active. The PDF is copied unchanged into the build output.
 
-Email remains a `pending` placeholder. Add the approved portrait to `public/images/`, then set `PORTRAIT.src`, alt text, and dimensions in `src/data/site.ts`. The existing portrait region remains unchanged until then.
+No website email has been approved; the footer omits that contact item while `EMAIL` is null. The approved portrait is configured in `src/data/site.ts` at `/images/portrait.jpg`; preserve its current CSS crop and source bytes.
 
 ## Curated homepage content
 
@@ -85,7 +85,7 @@ Columbia Blue follows the [university’s official digital color specification](
 
 ### Homepage composition
 
-The desktop hero retains its roughly 6:10 height-to-width ratio. The name stays on one line inside the light-blue left panel. The academic identity and short statement below it use the unchanged warm gray-red page ground. The central-right portrait region remains reserved. Only Resume and LinkedIn occupy the top-right yellow box. The existing tall rectangle below contains a restrained four-link internal section menu, retaining its page-ground fill and boundaries. The research-interests row uses pale red. There is no lower-right links block. Black rules follow cell boundaries.
+The desktop hero retains its roughly 6:10 height-to-width ratio. The name stays on one line inside the light-blue left panel. The academic identity and short statement below it use the unchanged warm gray-red page ground. The central-right region displays the approved portrait. Only Resume and LinkedIn occupy the top-right yellow box. The existing tall rectangle below contains a restrained four-link internal section menu, retaining its page-ground fill and boundaries. The research-interests row uses pale red. There is no lower-right links block. Black rules follow cell boundaries.
 
 The supplied brief described a Mondrian reference, but its attachment contained only text. The composition interprets that description through unequal rectangles, a dominant portrait region, controlled empty space, and slim colored bands; it does not claim to reproduce an unseen image.
 
@@ -93,7 +93,7 @@ The homepage and Selected Work band share C (`38.2%`) and D (`84.55%`) alignment
 
 ### Research presentation
 
-The project opening is on the neutral background, introduced by one slim yellow–blue–red label band. Section labels §1–§8 (including methodology) use short, single-line titles in narrow strips: a yellow number field, Columbia-blue title field, and soft-red terminal. A consistent 64px number track (36px on mobile) gives titles enough room without wrapping, truncation, or tiny type. The article keeps its existing narrative, formulas, supporting releases, and native technical disclosures. Shared project-level math tokens set display equations to `clamp(22px, 1.85vw, 26px)` everywhere, including technical methodology; inline MathML uses `1.08em`. Native MathML handles baselines and script sizing, while long display equations scroll within their keyboard-focusable regions.
+The project opening is on the neutral background, introduced by one slim yellow–blue–red label band. Section labels §1–§8 (including methodology) use short, single-line titles in narrow strips: a yellow number field, Columbia-blue title field, and soft-red terminal. A consistent 64px number track (36px on mobile) gives titles enough room without wrapping, truncation, or tiny type. The article keeps its existing narrative, formulas, supporting releases, and native technical disclosures. Shared project-level math tokens set display equations to `clamp(20px, 1.7vw, 24px)` everywhere, including technical methodology; inline MathML uses `1.08em`. Equation padding and block margins remain `14.4px`. Native MathML handles baselines and script sizing, while long display equations scroll within their keyboard-focusable regions.
 
 The opening note reads:
 
@@ -103,8 +103,16 @@ All 17 frozen SVGs remain. Main-case figure families follow 01 → 01B, 03 → 0
 
 ### Navigation and accessibility
 
-The yellow block shows active Resume and LinkedIn links. The adjacent internal menu links to `#selected-work`, `#background`, `#research-experience`, and `#teaching`, in page order. Each target is a semantic section with a heading and `tabindex="-1"`, allowing native anchor navigation to move keyboard focus. There is no sticky navigation. Explore project remains the single project CTA; the title and preview figure are not duplicate links. The footer keeps only identity/copyright and the existing email placeholder. The homepage has eight anchors, including the accessibility skip link.
+The yellow block shows active Resume and LinkedIn links. The adjacent internal menu links to `#selected-work`, `#background`, `#research-experience`, and `#teaching`, in page order. Each target is a semantic section with a heading and `tabindex="-1"`, allowing native anchor navigation to move keyboard focus. There is no sticky navigation. Explore project remains the single project CTA; the title and preview figure are not duplicate links. The footer keeps only identity/copyright; no email placeholder is rendered. The homepage has eight anchors, including the accessibility skip link.
 
 The project page retains its eight section-navigation links, now labeled §1–§8, one GitHub link, and “Back to Main Page” links at the top and bottom, both pointing to `/`. Figure labels remain 01, 01B, and so on, distinct from section numbers. Including the skip link, it has 12 anchors. All image-opening links and fine-grained figure-reference links are removed. Native `<details>` controls still expose technical figures and methodology without JavaScript.
 
 System serif/sans-serif/monospace fonts avoid remote requests. Wide equations scroll locally. Browser validation covers six widths (320, 375, 768, 1024, 1440, 1920px), single-line name and heading fit, exact hero fill colors, top-right profile placement, unchanged hero geometry, section numbering, display/inline math size, four keyboard-operable homepage anchors, link counts, figure order, frozen SVG hashes, local navigation, native keyboard controls, and automated WCAG accessibility checks.
+
+## Public release checks
+
+The intended production root is `https://wangdong-jia.github.io/`; this source repository remains private. Shared metadata uses that origin, trailing-slash canonicals, and page-specific Open Graph types. The custom favicon is `/favicon.svg`, and `/robots.txt` allows indexing. No social-card image or sitemap dependency is added. A sitemap is optional for the current two-page site. No deployment workflow is configured.
+
+Run `npm run check`, `npm run build`, and `npm run verify:portfolio`. The build runs `scripts/verify-public-build.mjs`, which removes Finder `.DS_Store` files from output and rejects unexpected files, directories, source maps, JavaScript bundles, private-path traces, or missing public assets. It verifies copied public asset bytes. Only the 24 intentional website files belong in the current `dist/` artifact.
+
+The upstream manifest is retained unchanged for provenance. The three adapted website documents (`project-card.json`, `project-report.md`, `website-handoff.md`) are independently pinned in `scripts/website-documents.sha256.json`; their approved website revisions must not be represented as upstream-frozen copies. Strict upstream hash checks still cover every SVG and the mathematical methodology.

@@ -5,6 +5,10 @@ import { readFile } from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const content = new URL('src/content/event-time-volatility/', root);
 const manifest = JSON.parse(await readFile(new URL('manifest.json', content), 'utf8'));
+// Preserve the upstream manifest. These three website-adapted documents have
+// separate approved hashes; SVGs and methodology still use upstream hashes.
+const websiteDocuments = JSON.parse(await readFile(new URL('scripts/website-documents.sha256.json', root), 'utf8'));
+assert.deepEqual(Object.keys(websiteDocuments).sort(), ['project-card.json', 'project-report.md', 'website-handoff.md']);
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
 assert.equal(manifest.asset_count, 17);
 assert.equal(manifest.assets.length, 17);
@@ -14,7 +18,9 @@ for (const [path, expected] of Object.entries(manifest.outputs_sha256)) {
   const local = relative.startsWith('assets/')
     ? new URL(`public/projects/event-time-volatility/${relative.slice(7)}`, root)
     : new URL(relative, content);
-  assert.equal(hash(await readFile(local)), expected, `Frozen content changed: ${relative}`);
+  const websiteExpected = websiteDocuments[relative];
+  assert.equal(hash(await readFile(local)), websiteExpected ?? expected,
+    `${websiteExpected ? 'Website document' : 'Frozen content'} changed: ${relative}`);
 }
 
 const figures = JSON.parse(await readFile(new URL('figures.json', content), 'utf8'));
@@ -34,4 +40,4 @@ for (const [key, figure] of Object.entries(figures)) {
   assert.ok(Math.abs(figure.width / figure.height - viewBox[2] / viewBox[3]) < 1e-9, `Aspect ratio changed: ${key}`);
 }
 
-console.log('Verified 21 frozen output hashes, all 17 SVG integrations, original alt text, and figure aspect ratios.');
+console.log('Verified 18 upstream frozen hashes (17 SVGs + methodology), 3 website-document hashes, all 17 SVG integrations, original alt text, and figure aspect ratios.');
