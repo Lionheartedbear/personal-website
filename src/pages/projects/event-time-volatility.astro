@@ -74,46 +74,59 @@ const releases = [
 
   <ResearchSection number="3" id="return-volatility" title="Return volatility">
     <div class="prose">
-      <p>Let <Math inline tex="X_n = \log(P_n)" />, where <Math inline tex="P_n" /> is the accepted price. A smooth return operator distributes weight across <strong>20 event prices</strong>:</p>
-      <Math tex="R_n=\sum_{j=0}^{19}h_jX_{n-j}." />
-      <p>Recent and older prices receive opposite signs. Small edge weights and two smooth lobes replace a hard two-endpoint difference with a distributed return measurement. The public Kaiser-derived kernel is approximately zero-sum and oriented so a rising log-price trend produces a positive response.</p>
-      <p>The squared filtered returns are then averaged with <strong>60 nonnegative Kaiser weights</strong>, summing to one, and square-rooted.</p>
+      <p>Return volatility applies a smooth operator to the log prices of accepted observations, then averages the squared filtered returns and takes the square root.</p>
     </div>
     <p class="method-sequence">20 price coefficients <span aria-hidden="true">→</span> square <span aria-hidden="true">→</span> 60 variance weights <span aria-hidden="true">→</span> square root</p>
+    <details class="figure-disclosure">
+      <summary>The 20 / 60 weight profiles <span>Technical detail</span></summary>
+      <div class="prose">
+        <p>Let <Math inline tex="X_n = \log(P_n)" />, where <Math inline tex="P_n" /> is the accepted price. A smooth return operator distributes weight across <strong>20 event prices</strong>:</p>
+        <Math tex="R_n=\sum_{j=0}^{19}h_jX_{n-j}." />
+        <p>Recent and older prices receive opposite signs. Small edge weights and two smooth lobes replace a hard two-endpoint difference with a distributed return measurement. The public Kaiser-derived kernel is approximately zero-sum and oriented so a rising log-price trend produces a positive response.</p>
+        <p>The squared filtered returns are then averaged with <strong>60 nonnegative Kaiser weights</strong>, summing to one, and square-rooted.</p>
+        <Math tex="V^R_n=\sum_{j=0}^{59}w^R_jR_{n-j}^{2}" />
+        <Math tex="\sigma^R_{n,\mathrm{unscaled}}=\sqrt{V^R_n}." />
+        <p>Figure 06 shows the two weight profiles used in the return-volatility construction: the first-stage coefficients <Math inline tex="h_j" /> and the second-stage variance weights <Math inline tex="w_j^R" />.</p>
+      </div>
+      <Figure {...figures.returnWeights} />
+      <div class="prose">
+        <p>The first kernel has random-walk variance gain <strong>24</strong>. Its <strong>20-coefficient support</strong> and <strong>24-increment normalization target</strong> are different quantities. This normalization matches an independent-increment reference scale; it does not make the estimator unbiased in empirical markets. All weights act on current or past observations, although smooth trailing weights introduce lag.</p>
+      </div>
+    </details>
     <div class="volatility-views">
       <Figure {...figures.returnBroad} id="return-volatility-broad" caption="Broad context · Return volatility across the complete event-index period corresponding to 13:00–14:15 UTC. Scaled log-return basis points, not annualized." />
       <Figure {...figures.returnZoom} id="return-volatility-zoom" caption="Release detail · Event indices 322–442 isolate the response around the shared release reference at 382, using the same return-volatility construction." />
     </div>
-    <details class="figure-disclosure">
-      <summary>The 20 / 60 weight profiles <span>Technical detail</span></summary>
-      <Figure {...figures.returnWeights} />
-      <div class="prose">
-        <Math tex="V^R_n=\sum_{j=0}^{59}w^R_jR_{n-j}^{2}" />
-        <Math tex="\sigma^R_{n,\mathrm{unscaled}}=\sqrt{V^R_n}." />
-        <p>The first kernel has random-walk variance gain <strong>24</strong>. Its <strong>20-coefficient support</strong> and <strong>24-increment normalization target</strong> are different quantities. This normalization matches an independent-increment reference scale; it does not make the estimator unbiased in empirical markets. All weights act on current or past observations, although smooth trailing weights introduce lag.</p>
-      </div>
-    </details>
   </ResearchSection>
 
   <ResearchSection number="4" id="jump-volatility" title="Jump volatility">
     <div class="prose">
-      <p>A second measure emphasizes rapid event-to-event variation. Its first stage uses <strong>12 coefficients</strong> with alternating signs inside a symmetric Kaiser envelope.</p>
+      <p>The high-frequency counterpart emphasizes rapid event-to-event variation, using a shorter <strong>12-coefficient filter</strong> and <strong>12 variance weights</strong>. It is <strong>not a formal jump detector</strong>.</p>
     </div>
-    <div class="alternating-signs" aria-label="Alternating positive and negative weights"><span aria-hidden="true">+ − + − + − + − + − + −</span><p>Alternating signs. A smooth Kaiser amplitude envelope.</p></div>
-    <div class="prose">
-      <p>The kernel is scaled to the same random-walk gain of 24. Squared outputs are averaged with <strong>12 nonnegative, unit-sum Kaiser weights</strong>, then square-rooted.</p>
-      <p>“Jump volatility” is an illustrative high-frequency measure designed to emphasize rapid event-to-event variation. It can respond to abrupt movement, rapid oscillation and microstructure effects. It is <strong>not a formal detector</strong> or decomposition of continuous versus discontinuous price moves. Its different spectral weights and shorter averaging history explain why it need not trace the return-volatility curve.</p>
-    </div>
+    <details class="figure-disclosure">
+      <summary>The 12 / 12 weight profiles <span>Technical detail</span></summary>
+      <Math tex="g_{0,j}=(-1)^j\operatorname{Kaiser}_{12}(j;8)." />
+      <Math tex="g=g_0\sqrt{24/G(g_0)}" />
+      <Math tex="J_n=\sum_{j=0}^{11}g_jX_{n-j}" />
+      <Math tex="V^J_n=\sum_{j=0}^{11}w^J_jJ_{n-j}^{2}" />
+      <Math tex="\sigma^J_{n,\mathrm{unscaled}}=\sqrt{V^J_n}." />
+      <div class="prose">
+        <p>The first stage uses <strong>12 coefficients</strong> with alternating signs inside a symmetric Kaiser envelope.</p>
+      </div>
+      <div class="alternating-signs" aria-label="Alternating positive and negative weights"><span aria-hidden="true">+ − + − + − + − + − + −</span><p>Alternating signs. A smooth Kaiser amplitude envelope.</p></div>
+      <div class="prose">
+        <p>The kernel is scaled to the same random-walk gain of 24. Squared outputs are averaged with <strong>12 nonnegative, unit-sum Kaiser weights</strong>, then square-rooted.</p>
+        <p>Figure 07 shows the corresponding first- and second-stage profiles for the high-frequency counterpart: <Math inline tex="g_j" /> and <Math inline tex="w_j^J" />.</p>
+      </div>
+      <Figure {...figures.jumpWeights} />
+      <div class="prose">
+        <p>“Jump volatility” is an illustrative high-frequency measure designed to emphasize rapid event-to-event variation. It can respond to abrupt movement, rapid oscillation and microstructure effects. It is <strong>not a formal detector</strong> or decomposition of continuous versus discontinuous price moves. Its different spectral weights and shorter averaging history explain why it need not trace the return-volatility curve.</p>
+      </div>
+    </details>
     <div class="volatility-views">
       <Figure {...figures.jumpBroad} id="jump-volatility-broad" caption="Broad context · The high-frequency counterpart across the complete event-index period corresponding to 13:00–14:15 UTC. Scaled log-return basis points, not annualized." />
       <Figure {...figures.jumpZoom} id="jump-volatility-zoom" caption="Release detail · The same event indices 322–442 and reference at 382 reveal rapid event-to-event variation around the release." />
     </div>
-    <details class="figure-disclosure">
-      <summary>The 12 / 12 weight profiles <span>Technical detail</span></summary>
-      <Figure {...figures.jumpWeights} />
-      <Math tex="J_n=\sum_{j=0}^{11}g_jX_{n-j}" />
-      <Math tex="g_{0,j}=(-1)^j\operatorname{Kaiser}_{12}(j;8)." />
-    </details>
   </ResearchSection>
 
   <ResearchSection number="5" id="february-nfp" title="February NFP">
